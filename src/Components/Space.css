@@ -1,0 +1,67 @@
+.universe {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  overflow: hidden;
+  perspective: 1200px;
+  z-index: 0;
+}
+
+/* Shared particle base */
+.logoParticle,
+.syntaxParticle {
+  position: absolute;
+  opacity: 0;
+  will-change: transform, opacity, filter;
+  animation:
+    flySlow linear infinite,
+    glowPulse 6s ease-in-out infinite;
+}
+
+/* Logos */
+.logoParticle {
+  width: 18px;
+  height: 18px;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.25));
+}
+
+/* Syntax */
+.syntaxParticle {
+  font-size: 4px;
+  color: #00f0ff;
+  text-shadow: 0 0 4px rgba(0, 240, 255, 0.4);
+}
+
+/* 🚀 Fly + Slight Rotation Combined */
+@keyframes flySlow {
+  0% {
+    transform: translateZ(-3000px) scale(0.3) rotate(var(--rotate));
+    opacity: 0;
+  }
+
+  40% {
+    opacity: 0.3;
+  }
+
+  70% {
+    opacity: 0.6;
+  }
+
+  100% {
+    transform: translateZ(800px) scale(1.4) rotate(calc(var(--rotate) + 220deg)); /* slightly more rotation */
+    opacity: 0;
+  }
+}
+
+/* ✨ Subtle Glow Pulse */
+@keyframes glowPulse {
+  0% {
+    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.2));
+  }
+  50% {
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.4));
+  }
+  100% {
+    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.2));
+  }
+}

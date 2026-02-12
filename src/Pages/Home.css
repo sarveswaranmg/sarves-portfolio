@@ -1,0 +1,50 @@
+.home-container {
+  position: relative;
+  height: 100vh; /* covers first screen */
+  width: 100%;
+  overflow: hidden;
+  background: #000;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+}
+
+/* Image container */
+.img-container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Profile image */
+.home-image {
+  height: 70vh;
+  /* max-height: 550px; */
+  object-fit: cover;
+  display: block;
+}
+
+/* Text section */
+.home-text {
+  position: relative;
+  z-index: 2;
+  margin-top: -60px;
+}
+
+/* Name */
+.name {
+  margin: 0;
+  font-size: clamp(20px, 6vw, 75px);
+  color: white;
+  font-weight: 400;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+}
+
+/* Role */
+.role {
+  margin-top: 10px;
+  font-size: clamp(28px, 4vw, 55px);
+  color: #b0b0b0;
+}
