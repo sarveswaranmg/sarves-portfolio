@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import "./education.css";
+import "./Education.css";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import LightRays from "../Components/LightRays"; // adjust path
