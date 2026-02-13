@@ -1,0 +1,135 @@
+.contact-wrapper {
+  min-height: 100vh;
+  background: radial-gradient(circle at center, #111 0%, #000 70%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  position: relative;
+}
+
+.contact-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 0.5px;
+  width: 100%;
+  transform: scaleX(0);
+  opacity: 0;
+
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.6) 20%,
+    white 50%,
+    rgba(255, 255, 255, 0.6) 80%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+
+  box-shadow:
+    0 0 8px rgba(255, 255, 255, 0.4),
+    0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.contact-inner {
+  max-width: 700px;
+  width: 100%;
+  text-align: center;
+}
+
+.contact-title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 15px;
+}
+
+.contact-subtitle {
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 40px;
+  font-size: 1rem;
+}
+
+.contact-card {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(20px);
+  padding: 40px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.contact-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.contact-card input,
+.contact-card textarea {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 16px;
+  color: white;
+  font-size: 0.95rem;
+  outline: none;
+  transition: 0.3s ease;
+  font-family: inherit;
+}
+
+.contact-card input::placeholder,
+.contact-card textarea::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.contact-card input:focus,
+.contact-card textarea:focus {
+  border-color: white;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+}
+
+.contact-card textarea {
+  min-height: 200px;
+  resize: vertical;
+  max-height: 400px;
+}
+
+.contact-card button {
+  padding: 14px;
+  border-radius: 12px;
+  border: none;
+  background: white;
+  color: black;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.contact-card button:hover {
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+}
+
+.social-row {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+
+.social-row a {
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.social-row img {
+  width: 32px;
+  height: 32px;
+}

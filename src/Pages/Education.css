@@ -1,0 +1,135 @@
+/* ================= SECTION ================= */
+
+.education-section {
+  position: relative;
+  min-height: 70vh;
+  overflow: hidden;
+  background: #000;
+  color: white;
+
+  margin-top: 5vh;
+  margin-bottom: 10vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.education-line {
+  height: 0.5px;
+  width: 100%;
+  margin-bottom: 0;
+  transform: scaleX(0);
+  opacity: 0;
+  position: relative;
+  z-index: 3;
+
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.6) 20%,
+    white 50%,
+    rgba(255, 255, 255, 0.6) 80%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+
+  box-shadow:
+    0 0 8px rgba(255, 255, 255, 0.4),
+    0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.education-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.education-content-wrapper {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5rem;
+}
+/* ================= TITLE ================= */
+
+.education-title {
+  font-size: 2.8rem;
+  margin-bottom: 80px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: center;
+  width: 100%;
+}
+
+/* ================= CARD ================= */
+
+.education-card {
+  --shadow-color: 255, 255, 255;
+  /* background: rgba(255, 255, 255, 0.05); */
+  backdrop-filter: blur(15px);
+  padding: 35px;
+  border-radius: 20px;
+  transition: all 0s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  max-width: 600px;
+  width: 100%;
+  opacity: 0.3;
+  pointer-events: auto;
+  box-shadow:
+    0.6px 0.4px 0.8px hsl(var(--shadow-color) / 0.34),
+    3.5px 2px 4.5px -0.4px hsl(var(--shadow-color) / 0.34),
+    6.5px 3.8px 8.5px -0.7px hsl(var(--shadow-color) / 0.34),
+    10.7px 6.3px 14px -1.1px hsl(var(--shadow-color) / 0.34),
+    17.1px 10px 22.3px -1.4px hsl(var(--shadow-color) / 0.34),
+    26.7px 15.7px 34.8px -1.8px hsl(var(--shadow-color) / 0.34),
+    40.7px 23.8px 53px -2.1px hsl(var(--shadow-color) / 0.34),
+    59.9px 35px 78px -2.5px hsl(var(--shadow-color) / 0.34);
+}
+
+.education-card:hover {
+  --shadow-color: 255, 255, 255;
+  transform: translateY(-8px);
+}
+
+/* ================= TEXT ================= */
+
+.education-year {
+  font-size: 0.9rem;
+  color: #00ff88;
+  letter-spacing: 1px;
+}
+
+.degree {
+  font-size: 1.6rem;
+  margin: 10px 0;
+}
+
+.specialization {
+  opacity: 0.85;
+  margin-bottom: 8px;
+}
+
+.university {
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.description {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  opacity: 0.75;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 900px) {
+  .education-card {
+    max-width: 100%;
+  }
+}

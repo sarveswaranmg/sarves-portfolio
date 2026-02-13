@@ -2,69 +2,178 @@
   font-family: sign;
   src: url("../assets/font/Mitchel-GO76G.otf") format("truetype");
 }
+
+.nav-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px 40px;
+  z-index: 1000;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+.nav-container.scrolled {
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  padding: 15px 40px;
+}
+
+.left-name-container {
+  position: relative;
+  display: inline-block;
+}
+
+.left-name {
+  font-family: sign;
+  font-size: 28px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  will-change: text-shadow;
+}
+
+/* Name Wrapper */
+.name-wrapper {
+  display: inline-flex;
+  gap: 0;
+  position: relative;
+}
+
+/* Individual Letters */
+.name-letter {
+  display: inline-block;
+  will-change: transform;
+  transition: color 0.3s ease;
+}
+
+.left-name:hover .name-letter {
+  color: white;
+}
+
+/* Signature Underline */
+.name-underline {
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.3),
+    white,
+    rgba(255, 255, 255, 0.3)
+  );
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+  transform-origin: left center;
+  will-change: transform, opacity;
+}
+
+/* Navigation Bar */
 .nav-bar {
   color: white;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
-  font-size: 16px;
-  gap: 30px;
+  justify-content: center;
+  gap: 40px;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
 }
-.left-name {
-  font-family: sign;
 
-  font-size: 30px;
-  color: white;
-}
-.nav-container {
+/* Navigation Items */
+.nav-item {
+  position: relative;
+  cursor: pointer;
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
   align-items: center;
+  justify-content: center;
+  padding: 8px 0;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  color: rgba(255, 255, 255, 0.6);
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
-.status-color {
-  display: inline-block;
-  width: 1vh;
-  height: 1vh;
-  background-color: green;
-  border-radius: 50%;
-  margin-left: 5px;
-  animation: glow 1.5s infinite ease-in;
+.nav-item:active {
+  transform: scale(0.98);
 }
 
-@keyframes glow {
-  0% {
-    box-shadow: 0 0 0px green;
-  }
-  50% {
-    box-shadow:
-      0 0 5px #00ff4c,
-      0 0 8px #00ff4c,
-      0 0 10px #00ff4c;
-  }
-  100% {
-    box-shadow: 0px 0px 0px #00ce3e;
-  }
+.nav-item span {
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
 }
 
+/* Underline Animation */
+.underline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.5),
+    white,
+    rgba(255, 255, 255, 0.5)
+  );
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+}
+
+/* Glass Card */
 .glass-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   color: white;
-  font-size: 12px;
-  padding: 12px;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  padding: 12px 20px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 25px;
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
   box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.5),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.1),
-    inset 0 0 0px 0px rgba(255, 255, 255, 0);
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1);
   position: relative;
   overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .glass-card::before {
@@ -95,4 +204,145 @@
     transparent,
     rgba(255, 255, 255, 0.3)
   );
+}
+
+/* Status Dot */
+.status-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background-color: #00ff88;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0, 255, 136, 0.8);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0px rgba(0, 255, 136, 0.8);
+  }
+  50% {
+    box-shadow:
+      0 0 8px rgba(0, 255, 136, 0.6),
+      0 0 15px rgba(0, 255, 136, 0.3);
+  }
+  100% {
+    box-shadow: 0 0 0px rgba(0, 255, 136, 0.8);
+  }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .nav-container {
+    padding: 15px 30px;
+  }
+
+  .nav-bar {
+    gap: 25px;
+  }
+
+  .left-name {
+    font-size: 24px;
+  }
+
+  .left-name-container {
+    font-size: 24px;
+  }
+
+  .nav-item {
+    font-size: 12px;
+  }
+
+  .glass-card {
+    font-size: 11px;
+    padding: 10px 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-container {
+    padding: 12px 20px;
+    gap: 15px;
+  }
+
+  .nav-container.scrolled {
+    padding: 12px 20px;
+  }
+
+  .left-name {
+    font-size: 20px;
+  }
+
+  .left-name-container {
+    font-size: 20px;
+  }
+
+  .nav-bar {
+    gap: 15px;
+    font-size: 12px;
+  }
+
+  .nav-item {
+    font-size: 11px;
+    padding: 6px 0;
+  }
+
+  .glass-card {
+    font-size: 10px;
+    padding: 8px 12px;
+    gap: 6px;
+  }
+
+  .status-dot {
+    width: 6px;
+    height: 6px;
+  }
+
+  .underline {
+    height: 1.5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-container {
+    padding: 10px 15px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .left-name {
+    font-size: 18px;
+  }
+
+  .left-name-container {
+    font-size: 18px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-bar {
+    gap: 8px;
+    font-size: 10px;
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    margin-top: 8px;
+  }
+
+  .nav-item {
+    font-size: 9px;
+    padding: 4px 0;
+  }
+
+  .glass-card {
+    font-size: 9px;
+    padding: 6px 10px;
+    gap: 4px;
+    order: 2;
+  }
+
+  .status-dot {
+    width: 5px;
+    height: 5px;
+  }
 }

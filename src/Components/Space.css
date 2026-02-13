@@ -20,14 +20,14 @@
 
 /* Logos */
 .logoParticle {
-  width: 18px;
-  height: 18px;
+  width: 22px;
+  height: 22px;
   filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.25));
 }
 
 /* Syntax */
 .syntaxParticle {
-  font-size: 4px;
+  font-size: 8px;
   color: #00f0ff;
   text-shadow: 0 0 4px rgba(0, 240, 255, 0.4);
 }
