@@ -1,10 +1,32 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useCallback } from "react";
 import { motion } from "framer-motion";
 import "./NavBar.css";
+
+const MobileNavItem = React.memo(
+  ({ section, i, isMobileMenuOpen, onScroll, mobileItemVariants }) => (
+    <motion.div
+      className="mobile-nav-item"
+      onClick={() => onScroll(section)}
+      variants={mobileItemVariants}
+      custom={i}
+      animate={isMobileMenuOpen ? "open" : "closed"}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") onScroll(section);
+      }}
+    >
+      <span>{section}</span>
+    </motion.div>
+  ),
+);
+
+MobileNavItem.displayName = "MobileNavItem";
 
 function NavBar() {
   const [activeSection, setActiveSection] = useState("Home");
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const sections = useMemo(
     () => ["Home", "About", "Projects", "Skills", "Education", "Contact"],
@@ -51,10 +73,10 @@ function NavBar() {
     };
   }, [sections]);
 
-  const scrollToSection = (sectionId) => {
+  const scrollToSection = useCallback((sectionId) => {
     const element = document.getElementById(sectionId.toLowerCase());
     if (element) {
-      const navHeight = 80; // navbar height
+      const navHeight = 80;
       const elementPosition =
         element.getBoundingClientRect().top + window.scrollY;
       window.scrollTo({
@@ -62,8 +84,9 @@ function NavBar() {
         behavior: "smooth",
       });
       setActiveSection(sectionId);
+      setIsMobileMenuOpen(false);
     }
-  };
+  }, []);
 
   const containerVariants = {
     hidden: { opacity: 0, y: -20 },
@@ -128,26 +151,68 @@ function NavBar() {
       color: "rgba(255, 255, 255, 0.6)",
       scale: 1,
       textShadow: "none",
+      transition: { duration: 0.4, ease: "easeInOut" },
     },
     active: {
       color: "white",
       scale: 1.08,
       textShadow: "0 0 20px rgba(255, 255, 255, 0.6)",
-      transition: { duration: 0.3 },
+      transition: { duration: 0.4, ease: "easeInOut" },
     },
     hover: {
       color: "white",
       y: -2,
       scale: 1.1,
+      transition: { duration: 0.3, ease: "easeOut" },
     },
   };
 
+  const hamburgerVariants = {
+    closed: {
+      rotate: 0,
+      transition: { duration: 0.3 },
+    },
+    open: {
+      rotate: 90,
+      transition: { duration: 0.3 },
+    },
+  };
+
+  const mobileMenuVariants = {
+    closed: {
+      opacity: 0,
+      y: -20,
+      pointerEvents: "none",
+      transition: { duration: 0.3 },
+    },
+    open: {
+      opacity: 1,
+      y: 0,
+      pointerEvents: "auto",
+      transition: { duration: 0.4, ease: "easeOut" },
+    },
+  };
+
+  const mobileItemVariants = {
+    closed: { opacity: 0, x: -10 },
+    open: (i) => ({
+      opacity: 1,
+      x: 0,
+      transition: {
+        delay: i * 0.05,
+        duration: 0.3,
+        ease: "easeOut",
+      },
+    }),
+  };
+
   return (
-    <motion.div
+    <motion.nav
       className={`nav-container ${isScrolled ? "scrolled" : ""}`}
       variants={containerVariants}
       initial="hidden"
       animate="visible"
+      aria-label="Main navigation"
     >
       {/* Logo */}
       <motion.div variants={itemVariants} className="left-name-container">
@@ -178,10 +243,14 @@ function NavBar() {
         </motion.div>
       </motion.div>
 
-      {/* Navigation Links */}
-      <motion.div className="nav-bar" variants={itemVariants}>
+      {/* Navigation Links - Desktop */}
+      <motion.nav
+        className="nav-bar"
+        variants={itemVariants}
+        aria-label="Desktop navigation"
+      >
         {sections.map((section) => (
-          <motion.div
+          <motion.button
             key={section}
             className="nav-item"
             onClick={() => scrollToSection(section)}
@@ -189,7 +258,8 @@ function NavBar() {
             initial="rest"
             animate={activeSection === section ? "active" : "rest"}
             whileHover="hover"
-            style={{ cursor: "pointer" }}
+            aria-label={`Navigate to ${section}`}
+            aria-current={activeSection === section ? "page" : undefined}
           >
             <span>{section}</span>
             {activeSection === section && (
@@ -197,13 +267,53 @@ function NavBar() {
                 className="underline"
                 layoutId="underline"
                 transition={{ type: "spring", stiffness: 380, damping: 40 }}
+                aria-hidden="true"
               />
             )}
-          </motion.div>
+          </motion.button>
+        ))}
+      </motion.nav>
+
+      {/* Hamburger Menu - Mobile */}
+      <motion.button
+        className="hamburger-menu"
+        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        variants={hamburgerVariants}
+        animate={isMobileMenuOpen ? "open" : "closed"}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+        aria-label="Toggle navigation menu"
+        aria-expanded={isMobileMenuOpen}
+        aria-controls="mobile-menu"
+      >
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </motion.button>
+
+      {/* Mobile Menu */}
+      <motion.div
+        id="mobile-menu"
+        className="mobile-menu"
+        variants={mobileMenuVariants}
+        initial="closed"
+        animate={isMobileMenuOpen ? "open" : "closed"}
+        role="navigation"
+        aria-label="Mobile navigation"
+      >
+        {sections.map((section, i) => (
+          <MobileNavItem
+            key={section}
+            section={section}
+            i={i}
+            isMobileMenuOpen={isMobileMenuOpen}
+            onScroll={scrollToSection}
+            mobileItemVariants={mobileItemVariants}
+          />
         ))}
       </motion.div>
 
-      {/* Status Card */}
+      {/* Status Card - Desktop Only */}
       <motion.div variants={itemVariants} className="glass-card">
         <motion.span
           animate={{ scale: [1, 1.2, 1] }}
@@ -212,7 +322,7 @@ function NavBar() {
         />
         <span>Open to work</span>
       </motion.div>
-    </motion.div>
+    </motion.nav>
   );
 }
 

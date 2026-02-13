@@ -1,0 +1,14 @@
+# Robots.txt for sarves.dev
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://sarves.dev/sitemap.xml
+
+# Crawl Delay
+Crawl-delay: 1
+
+# Block common non-useful paths
+Disallow: /api/
+Disallow: /_next/
+Disallow: /node_modules/

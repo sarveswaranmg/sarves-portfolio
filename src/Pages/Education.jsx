@@ -10,9 +10,10 @@ const Education = () => {
   const lineRef = useRef(null);
   const cardRef = useRef(null);
   const sectionRef = useRef(null);
-  const [shadowStyle, setShadowStyle] = useState({});
   const shadowState = useRef({ x: 0, y: 0, targetX: 0, targetY: 0 });
   const animationFrameRef = useRef(null);
+  const isMobile = typeof window !== "undefined" && window.innerWidth <= 768;
+  const [hasDeviceOrientation, setHasDeviceOrientation] = useState(false);
 
   useEffect(() => {
     // Animate line
@@ -28,7 +29,7 @@ const Education = () => {
           trigger: lineRef.current,
           start: "top 85%",
           end: "top 60%",
-          scrub: true,
+          scrub: 0.5, // optimized from true
         },
       },
     );
@@ -46,13 +47,16 @@ const Education = () => {
           trigger: cardRef.current,
           start: "top 85%",
           end: "top 65%",
-          scrub: true,
+          scrub: 0.5, // optimized from true
         },
       },
     );
   }, []);
 
   useEffect(() => {
+    let lastShadowX = 0;
+    let lastShadowY = 0;
+
     const smoothShadowUpdate = () => {
       const state = shadowState.current;
 
@@ -60,14 +64,22 @@ const Education = () => {
       state.x += (state.targetX - state.x) * 0.1;
       state.y += (state.targetY - state.y) * 0.1;
 
-      // Generate dynamic multi-layer shadow based on cursor position
-      const shadowLayers = [
-        `${state.x * 0.6}px ${state.y * 0.8}px 10px 5px rgba(255, 255, 255, 0.05)`,
-      ];
+      // Only update DOM when shadow actually changed (> 0.5px difference)
+      const roundedX = Math.round(state.x * 0.6 * 10) / 10;
+      const roundedY = Math.round(state.y * 0.8 * 10) / 10;
 
-      setShadowStyle({
-        boxShadow: shadowLayers.join(", "),
-      });
+      if (
+        Math.abs(roundedX - lastShadowX) > 0.5 ||
+        Math.abs(roundedY - lastShadowY) > 0.5
+      ) {
+        lastShadowX = roundedX;
+        lastShadowY = roundedY;
+
+        // Direct DOM manipulation instead of setState to avoid React re-renders
+        if (cardRef.current) {
+          cardRef.current.style.boxShadow = `${roundedX}px ${roundedY}px 10px 5px rgba(255, 255, 255, 0.05)`;
+        }
+      }
 
       animationFrameRef.current = requestAnimationFrame(smoothShadowUpdate);
     };
@@ -82,8 +94,26 @@ const Education = () => {
   }, []);
 
   useEffect(() => {
-    const handleMouseMove = (e) => {
+    const handleDeviceOrientation = (event) => {
       if (!cardRef.current) return;
+
+      // Get device orientation angles
+      const alpha = event.alpha || 0; // Z axis rotation (0-360)
+      const beta = event.beta || 0; // X axis rotation (-180 to 180)
+      const gamma = event.gamma || 0; // Y axis rotation (-90 to 90)
+
+      // Use beta and gamma for hologram effect (tilt angles)
+      // Normalize angles to shadow offset range
+      const shadowDistance = 40;
+      const shadowX = (gamma / 90) * shadowDistance;
+      const shadowY = (beta / 90) * shadowDistance;
+
+      shadowState.current.targetX = shadowX;
+      shadowState.current.targetY = shadowY;
+    };
+
+    const handleMouseMove = (e) => {
+      if (!cardRef.current || isMobile) return;
 
       const card = cardRef.current;
       const rect = card.getBoundingClientRect();
@@ -105,9 +135,39 @@ const Education = () => {
       shadowState.current.targetY = Math.sin(angle) * shadowDistance;
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
+    // Request device orientation permission for iOS 13+
+    if (
+      isMobile &&
+      typeof DeviceOrientationEvent !== "undefined" &&
+      DeviceOrientationEvent.requestPermission
+    ) {
+      DeviceOrientationEvent.requestPermission()
+        .then((permission) => {
+          if (permission === "granted") {
+            setHasDeviceOrientation(true);
+            window.addEventListener(
+              "deviceorientation",
+              handleDeviceOrientation,
+            );
+          }
+        })
+        .catch(console.error);
+    } else if (isMobile && typeof DeviceOrientationEvent !== "undefined") {
+      // Android and older iOS
+      setHasDeviceOrientation(true);
+      window.addEventListener("deviceorientation", handleDeviceOrientation);
+    }
+
+    // Desktop mouse tracking
+    if (!isMobile) {
+      window.addEventListener("mousemove", handleMouseMove);
+    }
+
+    return () => {
+      window.removeEventListener("deviceorientation", handleDeviceOrientation);
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, [isMobile]);
 
   return (
     <section className="education-section" ref={sectionRef} id="education">
@@ -136,7 +196,7 @@ const Education = () => {
       <div className="education-content-wrapper">
         <h2 className="education-title">Education</h2>
 
-        <div ref={cardRef} className="education-card" style={shadowStyle}>
+        <div ref={cardRef} className="education-card">
           <span className="education-year">2020 – 2025</span>
 
           <h3 className="degree">M.Tech (Integrated) – Computer Science</h3>

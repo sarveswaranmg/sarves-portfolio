@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import "./Space.css";
 
 import reactLogo from "../assets/logos/react.svg";
@@ -20,7 +20,8 @@ import pandasLogo from "../assets/logos/pandas.svg";
 import tensorflowLogo from "../assets/logos/tensorflow.svg";
 import tableauLogo from "../assets/logos/tableau.svg";
 import dsaLogo from "../assets/logos/dsa.png";
-export default function Space() {
+
+function Space() {
   const universeRef = useRef(null);
 
   useEffect(() => {
@@ -67,8 +68,8 @@ export default function Space() {
       "useRef",
     ];
 
-    const logoCount = 50; // controlled density
-    const symbolCount = 24; // very subtle
+    const logoCount = 18; // reduced for smooth rendering
+    const symbolCount = 10; // reduced for smooth rendering
 
     const createLogo = () => {
       const img = document.createElement("img");
@@ -114,3 +115,5 @@ export default function Space() {
 
   return <div className="universe" ref={universeRef} aria-hidden="true" />;
 }
+
+export default React.memo(Space);

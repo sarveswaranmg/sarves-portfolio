@@ -12,24 +12,21 @@
 .syntaxParticle {
   position: absolute;
   opacity: 0;
-  will-change: transform, opacity, filter;
-  animation:
-    flySlow linear infinite,
-    glowPulse 6s ease-in-out infinite;
+  will-change: transform, opacity;
+  animation: flySlow linear infinite;
 }
 
 /* Logos */
 .logoParticle {
   width: 22px;
   height: 22px;
-  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.25));
+  opacity: 0.6;
 }
 
 /* Syntax */
 .syntaxParticle {
   font-size: 8px;
   color: #00f0ff;
-  text-shadow: 0 0 4px rgba(0, 240, 255, 0.4);
 }
 
 /* 🚀 Fly + Slight Rotation Combined */
@@ -50,18 +47,5 @@
   100% {
     transform: translateZ(800px) scale(1.4) rotate(calc(var(--rotate) + 220deg)); /* slightly more rotation */
     opacity: 0;
-  }
-}
-
-/* ✨ Subtle Glow Pulse */
-@keyframes glowPulse {
-  0% {
-    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.2));
-  }
-  50% {
-    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.4));
-  }
-  100% {
-    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.2));
   }
 }

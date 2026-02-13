@@ -12,6 +12,22 @@ dist
 dist-ssr
 *.local
 
+# Source maps (security - prevent source exposure)
+*.map
+*.js.map
+*.css.map
+*.js.map.json
+
+# Build artifacts
+*.bundle.js
+*.bundle.js.map
+build/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -22,3 +38,12 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# OS files
+Thumbs.db
+.AppleDouble
+.DS_Store
+
+# IDE
+*.iml
+.gradle/

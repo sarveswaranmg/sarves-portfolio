@@ -1,4 +1,10 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, {
+  useRef,
+  useState,
+  useEffect,
+  useCallback,
+  useMemo,
+} from "react";
 import { motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -30,13 +36,13 @@ export default function Contact() {
           trigger: lineRef.current,
           start: "top 85%",
           end: "top 60%",
-          scrub: true,
+          scrub: 0.5, // optimized from true
         },
       },
     );
   }, []);
 
-  const sendEmail = async (e) => {
+  const sendEmail = useCallback(async (e) => {
     e.preventDefault();
 
     const formData = new FormData(form.current);
@@ -66,27 +72,39 @@ export default function Contact() {
       alert("Error sending message ❌");
       console.error("Error:", error);
     }
-  };
+  }, []);
 
-  const socialLinks = [
-    { logo: linkedinLogo, url: "https://linkedin.com/in/your-linkedin" },
-    { logo: githubLogo, url: "https://github.com/your-github" },
-    { logo: leetcodeLogo, url: "https://leetcode.com/your-leetcode" },
-    { logo: gmailLogo, url: "mailto:mfgsarvesh15@gmail.com" },
-  ];
+  const socialLinks = useMemo(
+    () => [
+      {
+        logo: linkedinLogo,
+        url: "https://www.linkedin.com/in/sarveswaran-mg-b9699521b/",
+      },
+      { logo: githubLogo, url: "https://github.com/sarveswaranmg" },
+      { logo: leetcodeLogo, url: "https://leetcode.com/u/SarveswaranMG/" },
+      { logo: gmailLogo, url: "mailto:mfgsarvesh15@gmail.com" },
+    ],
+    [],
+  );
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.2 },
-    },
-  };
+  const containerVariants = useMemo(
+    () => ({
+      hidden: { opacity: 0 },
+      visible: {
+        opacity: 1,
+        transition: { staggerChildren: 0.2 },
+      },
+    }),
+    [],
+  );
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 40 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.7 } },
-  };
+  const itemVariants = useMemo(
+    () => ({
+      hidden: { opacity: 0, y: 40 },
+      visible: { opacity: 1, y: 0, transition: { duration: 0.7 } },
+    }),
+    [],
+  );
 
   return (
     <div className="contact-wrapper">
@@ -141,6 +159,18 @@ export default function Contact() {
               <img src={link.logo} alt="social" />
             </motion.a>
           ))}
+
+          {/* Download Resume Button */}
+          <motion.a
+            href="/resume.pdf"
+            download
+            className="resume-btn"
+            whileHover={{ y: -8, scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            title="Download Resume"
+          >
+            ⬇
+          </motion.a>
         </motion.div>
       </motion.div>
     </div>

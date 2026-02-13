@@ -1,6 +1,6 @@
 .home-container {
   position: relative;
-  height: 100vh; /* covers first screen */
+  height: 100vh;
   width: 100%;
   overflow: hidden;
   background: #000;
@@ -10,22 +10,24 @@
   align-items: center;
   margin-top: 10vh;
   text-align: center;
+  contain: layout style paint;
 }
 
 /* Image container */
 .img-container {
   position: relative;
   z-index: 1;
-  will-change: transform;
+  backface-visibility: hidden;
 }
 
 /* Profile image */
 .home-image {
   height: 70vh;
-  /* max-height: 550px; */
   object-fit: cover;
   display: block;
-  will-change: transform, filter;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Text section */
@@ -33,7 +35,7 @@
   position: relative;
   z-index: 2;
   margin-top: -60px;
-  will-change: opacity, transform;
+  contain: layout style;
 }
 
 /* Name */
@@ -44,7 +46,7 @@
   font-weight: 400;
   text-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
   display: inline-block;
-  will-change: text-shadow;
+  transition: text-shadow 0.3s ease;
 }
 
 /* Role */
@@ -52,6 +54,90 @@
   margin-top: 10px;
   font-size: clamp(28px, 4vw, 55px);
   color: #b0b0b0;
-  will-change: text-shadow;
   transition: text-shadow 0.3s ease;
+  min-height: 60px;
+}
+
+/* Mobile Optimization */
+@media (max-width: 1024px) {
+  .home-container {
+    margin-top: 8vh;
+  }
+
+  .home-image {
+    height: 60vh;
+  }
+
+  .home-text {
+    margin-top: -50px;
+  }
+
+  .role {
+    min-height: 50px;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-container {
+    height: auto;
+    min-height: 100vh;
+    margin-top: 5vh;
+    padding-bottom: 20px;
+    justify-content: center;
+  }
+
+  .home-image {
+    height: 50vh;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .home-text {
+    margin-top: -40px;
+    width: 100%;
+    padding: 0 20px;
+  }
+
+  .name {
+    font-size: clamp(18px, 5vw, 45px);
+  }
+
+  .role {
+    font-size: clamp(16px, 3.5vw, 40px);
+    min-height: 45px;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-container {
+    margin-top: 4vh;
+    padding-bottom: 15px;
+  }
+
+  .home-image {
+    height: 40vh;
+  }
+
+  .home-text {
+    margin-top: -30px;
+  }
+
+  .name {
+    font-size: clamp(16px, 4.5vw, 32px);
+  }
+
+  .role {
+    font-size: clamp(14px, 3vw, 28px);
+    margin-top: 8px;
+    min-height: 40px;
+  }
+}
+
+/* Disable animations on low-end devices */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
