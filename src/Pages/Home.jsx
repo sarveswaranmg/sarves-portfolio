@@ -99,6 +99,7 @@ function Home() {
 
   return (
     <motion.div
+      id="home"
       className="home-container"
       variants={containerVariants}
       initial="hidden"

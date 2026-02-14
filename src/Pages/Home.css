@@ -22,7 +22,7 @@
 
 /* Profile image */
 .home-image {
-  height: 70vh;
+  height: clamp(40vh, 60vh, 70vh);
   object-fit: cover;
   display: block;
   backface-visibility: hidden;
@@ -36,6 +36,7 @@
   z-index: 2;
   margin-top: -60px;
   contain: layout style;
+  padding: 0 clamp(16px, 3vw, 40px);
 }
 
 /* Name */
@@ -59,13 +60,23 @@
 }
 
 /* Mobile Optimization */
+@media (max-width: 1280px) {
+  .home-container {
+    margin-top: 9vh;
+  }
+
+  .home-image {
+    height: 62vh;
+  }
+}
+
 @media (max-width: 1024px) {
   .home-container {
     margin-top: 8vh;
   }
 
   .home-image {
-    height: 60vh;
+    height: 55vh;
   }
 
   .home-text {
@@ -130,6 +141,35 @@
     font-size: clamp(14px, 3vw, 28px);
     margin-top: 8px;
     min-height: 40px;
+  }
+}
+
+/* 4K / Ultra-wide screens */
+@media (min-width: 2560px) {
+  .home-container {
+    margin-top: 6vh;
+    height: auto;
+    min-height: 85vh;
+    padding-bottom: 2vh;
+  }
+
+  .home-image {
+    height: 60vh;
+  }
+
+  .home-text {
+    margin-top: -80px;
+    padding: 0 60px;
+  }
+
+  .name {
+    font-size: clamp(60px, 4vw, 120px);
+  }
+
+  .role {
+    font-size: clamp(45px, 3vw, 90px);
+    margin-top: 16px;
+    min-height: 80px;
   }
 }
 

@@ -1,7 +1,7 @@
 .about-section {
   background: #000;
   color: white;
-  padding: 8rem 4rem;
+  padding: 6rem clamp(2rem, 5vw, 4rem);
 }
 
 .about-container {
@@ -12,16 +12,16 @@
 }
 
 .about-title {
-  font-size: 72px;
+  font-size: clamp(32px, 5vw, 72px);
   font-weight: bold;
   margin: 0;
   flex-shrink: 0;
 }
 
 .about-description {
-  font-size: 34px;
+  font-size: clamp(18px, 2.5vw, 34px);
   line-height: 1.8;
-  width: 60vw;
+  width: min(60vw, 800px);
   margin: 0;
   text-align: justify;
 }
@@ -65,10 +65,10 @@
 }
 
 .about-text {
-  font-size: 26px;
+  font-size: clamp(16px, 1.8vw, 26px);
   line-height: 2;
   color: white;
-  max-width: 900px;
+  max-width: min(900px, 90%);
   width: 100%;
 }
 .line {
@@ -77,30 +77,27 @@
 }
 
 /* Responsive */
-@media (max-width: 1024px) {
-  .about-section {
-    padding: 6rem 3rem;
-  }
-
+@media (max-width: 1280px) {
   .about-container {
     gap: 5vh;
   }
 
-  .about-title {
-    font-size: 56px;
+  .about-description {
+    width: min(65vw, 750px);
+  }
+}
+
+@media (max-width: 1024px) {
+  .about-container {
+    gap: 4vh;
   }
 
   .about-description {
-    font-size: 38px;
-    width: 70vw;
+    width: min(70vw, 650px);
   }
 }
 
 @media (max-width: 768px) {
-  .about-section {
-    padding: 4rem 2rem;
-  }
-
   .about-container {
     flex-direction: column;
     gap: 2rem;
@@ -108,13 +105,11 @@
   }
 
   .about-title {
-    font-size: 32px;
     text-align: center;
     margin-bottom: 1.5rem;
   }
 
   .about-description {
-    font-size: 24px;
     width: 100%;
     line-height: 1.7;
     text-align: left;
@@ -126,23 +121,16 @@
 }
 
 @media (max-width: 480px) {
-  .about-section {
-    padding: 3rem 1.5rem;
-  }
-
   .about-container {
     flex-direction: column;
-    /* gap: 1.5rem; */
   }
 
   .about-title {
-    font-size: 24px;
     text-align: center;
     margin-bottom: 1rem;
   }
 
   .about-description {
-    font-size: 18px;
     width: 100%;
     line-height: 1.6;
     text-align: justify;
@@ -150,5 +138,36 @@
 
   .about-line {
     margin-bottom: 2rem;
+  }
+}
+
+/* 4K / Ultra-wide screens */
+@media (min-width: 2560px) {
+  .about-section {
+    padding: 8rem clamp(4rem, 6vw, 8rem);
+  }
+
+  .about-container {
+    gap: 12vh;
+  }
+
+  .about-title {
+    font-size: clamp(72px, 4vw, 120px);
+  }
+
+  .about-description {
+    font-size: clamp(28px, 1.8vw, 48px);
+    width: min(60vw, 1400px);
+    line-height: 1.9;
+  }
+
+  .about-text {
+    font-size: clamp(22px, 1.4vw, 36px);
+    max-width: min(1400px, 85%);
+    line-height: 2.2;
+  }
+
+  .about-line {
+    margin-bottom: 7rem;
   }
 }

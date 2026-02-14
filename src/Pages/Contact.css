@@ -32,13 +32,13 @@
 }
 
 .contact-inner {
-  max-width: 700px;
+  max-width: min(700px, 92%);
   width: 100%;
   text-align: center;
 }
 
 .contact-title {
-  font-size: 3.5rem;
+  font-size: clamp(1.8rem, 4vw, 3.5rem);
   font-weight: 800;
   color: white;
   margin-bottom: 15px;
@@ -46,32 +46,32 @@
 
 .contact-subtitle {
   color: rgba(255, 255, 255, 0.6);
-  margin-bottom: 40px;
-  font-size: 1rem;
+  margin-bottom: clamp(20px, 3vw, 40px);
+  font-size: clamp(0.85rem, 1.1vw, 1rem);
 }
 
 .contact-card {
   background: rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(20px);
-  padding: 40px;
-  border-radius: 20px;
+  padding: clamp(20px, 3vw, 40px);
+  border-radius: clamp(12px, 2vw, 20px);
   border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .contact-card form {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: clamp(12px, 1.5vw, 18px);
 }
 
 .contact-card input,
 .contact-card textarea {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  padding: 16px;
+  border-radius: clamp(8px, 1vw, 12px);
+  padding: clamp(12px, 1.2vw, 16px);
   color: white;
-  font-size: 0.95rem;
+  font-size: clamp(0.85rem, 1vw, 0.95rem);
   outline: none;
   transition: 0.3s ease;
   font-family: inherit;
@@ -90,20 +90,21 @@
 }
 
 .contact-card textarea {
-  min-height: 200px;
+  min-height: clamp(120px, 15vw, 200px);
   resize: vertical;
   max-height: 400px;
 }
 
 .contact-card button {
-  padding: 14px;
-  border-radius: 12px;
+  padding: clamp(10px, 1.2vw, 14px);
+  border-radius: clamp(8px, 1vw, 12px);
   border: none;
   background: white;
   color: black;
   font-weight: 600;
   cursor: pointer;
   transition: 0.3s ease;
+  font-size: clamp(0.85rem, 1vw, 1rem);
 }
 
 .contact-card button:hover {
@@ -111,17 +112,18 @@
 }
 
 .social-row {
-  margin-top: 40px;
+  margin-top: clamp(24px, 3vw, 40px);
   display: flex;
   justify-content: center;
-  gap: 25px;
+  gap: clamp(12px, 2vw, 25px);
+  flex-wrap: wrap;
 }
 
 .social-row a {
-  width: 60px;
-  height: 60px;
+  width: clamp(44px, 5vw, 60px);
+  height: clamp(44px, 5vw, 60px);
   background: rgba(255, 255, 255, 0.06);
-  border-radius: 14px;
+  border-radius: clamp(10px, 1.2vw, 14px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -130,23 +132,107 @@
 }
 
 .social-row img {
-  width: 32px;
-  height: 32px;
+  width: clamp(24px, 3vw, 32px);
+  height: clamp(24px, 3vw, 32px);
 }
 
 .resume-btn {
-  width: 60px;
-  height: 60px;
+  width: clamp(44px, 5vw, 60px);
+  height: clamp(44px, 5vw, 60px);
   background: rgba(255, 255, 255, 0.06);
-  border-radius: 14px;
+  border-radius: clamp(10px, 1.2vw, 14px);
   display: flex;
   align-items: center;
   justify-content: center;
   backdrop-filter: blur(15px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   text-decoration: none;
-  font-size: 24px;
+  font-size: clamp(18px, 2vw, 24px);
   color: white;
   transition: 0.3s ease;
   cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .contact-wrapper {
+    padding: 40px 16px;
+    min-height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-wrapper {
+    padding: 30px 12px;
+  }
+}
+
+/* 4K / Ultra-wide screens */
+@media (min-width: 2560px) {
+  .contact-wrapper {
+    padding: 100px 40px;
+  }
+
+  .contact-inner {
+    max-width: min(1100px, 85%);
+  }
+
+  .contact-title {
+    font-size: clamp(3.5rem, 3.5vw, 6rem);
+    margin-bottom: 24px;
+  }
+
+  .contact-subtitle {
+    font-size: clamp(1rem, 0.9vw, 1.4rem);
+    margin-bottom: clamp(30px, 3vw, 60px);
+  }
+
+  .contact-card {
+    padding: clamp(40px, 3vw, 60px);
+    border-radius: clamp(20px, 1.5vw, 28px);
+  }
+
+  .contact-card form {
+    gap: clamp(18px, 1.2vw, 28px);
+  }
+
+  .contact-card input,
+  .contact-card textarea {
+    padding: clamp(16px, 1vw, 22px);
+    font-size: clamp(1rem, 0.8vw, 1.2rem);
+    border-radius: clamp(12px, 0.8vw, 16px);
+  }
+
+  .contact-card textarea {
+    min-height: clamp(200px, 12vw, 320px);
+  }
+
+  .contact-card button {
+    padding: clamp(14px, 1vw, 20px);
+    font-size: clamp(1rem, 0.8vw, 1.2rem);
+    border-radius: clamp(12px, 0.8vw, 16px);
+  }
+
+  .social-row {
+    margin-top: clamp(40px, 3vw, 60px);
+    gap: clamp(20px, 1.5vw, 36px);
+  }
+
+  .social-row a {
+    width: clamp(60px, 4vw, 80px);
+    height: clamp(60px, 4vw, 80px);
+    border-radius: clamp(14px, 1vw, 20px);
+  }
+
+  .social-row img {
+    width: clamp(32px, 2.2vw, 44px);
+    height: clamp(32px, 2.2vw, 44px);
+  }
+
+  .resume-btn {
+    width: clamp(60px, 4vw, 80px);
+    height: clamp(60px, 4vw, 80px);
+    border-radius: clamp(14px, 1vw, 20px);
+    font-size: clamp(24px, 1.6vw, 32px);
+  }
 }

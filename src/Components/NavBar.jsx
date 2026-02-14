@@ -1,11 +1,24 @@
-import React, { useState, useEffect, useMemo, useCallback } from "react";
-import { motion } from "framer-motion";
+import React, {
+  useState,
+  useEffect,
+  useMemo,
+  useCallback,
+  useRef,
+} from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import "./NavBar.css";
 
 const MobileNavItem = React.memo(
-  ({ section, i, isMobileMenuOpen, onScroll, mobileItemVariants }) => (
+  ({
+    section,
+    i,
+    isMobileMenuOpen,
+    onScroll,
+    mobileItemVariants,
+    isActive,
+  }) => (
     <motion.div
-      className="mobile-nav-item"
+      className={`mobile-nav-item ${isActive ? "active" : ""}`}
       onClick={() => onScroll(section)}
       variants={mobileItemVariants}
       custom={i}
@@ -27,6 +40,7 @@ function NavBar() {
   const [activeSection, setActiveSection] = useState("Home");
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navRef = useRef(null);
 
   const sections = useMemo(
     () => ["Home", "About", "Projects", "Skills", "Education", "Contact"],
@@ -35,7 +49,8 @@ function NavBar() {
 
   useEffect(() => {
     const observerOptions = {
-      threshold: 0.3,
+      threshold: 0,
+      rootMargin: "-100px 0px -80% 0px",
     };
 
     const observerCallback = (entries) => {
@@ -72,6 +87,29 @@ function NavBar() {
       });
     };
   }, [sections]);
+
+  // Close mobile menu on outside click or scroll
+  useEffect(() => {
+    if (!isMobileMenuOpen) return;
+
+    const handleOutsideClick = (e) => {
+      if (navRef.current && !navRef.current.contains(e.target)) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    const handleScroll = () => {
+      setIsMobileMenuOpen(false);
+    };
+
+    document.addEventListener("click", handleOutsideClick, true);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      document.removeEventListener("click", handleOutsideClick, true);
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [isMobileMenuOpen]);
 
   const scrollToSection = useCallback((sectionId) => {
     const element = document.getElementById(sectionId.toLowerCase());
@@ -178,21 +216,6 @@ function NavBar() {
     },
   };
 
-  const mobileMenuVariants = {
-    closed: {
-      opacity: 0,
-      y: -20,
-      pointerEvents: "none",
-      transition: { duration: 0.3 },
-    },
-    open: {
-      opacity: 1,
-      y: 0,
-      pointerEvents: "auto",
-      transition: { duration: 0.4, ease: "easeOut" },
-    },
-  };
-
   const mobileItemVariants = {
     closed: { opacity: 0, x: -10 },
     open: (i) => ({
@@ -208,6 +231,7 @@ function NavBar() {
 
   return (
     <motion.nav
+      ref={navRef}
       className={`nav-container ${isScrolled ? "scrolled" : ""}`}
       variants={containerVariants}
       initial="hidden"
@@ -292,26 +316,32 @@ function NavBar() {
       </motion.button>
 
       {/* Mobile Menu */}
-      <motion.div
-        id="mobile-menu"
-        className="mobile-menu"
-        variants={mobileMenuVariants}
-        initial="closed"
-        animate={isMobileMenuOpen ? "open" : "closed"}
-        role="navigation"
-        aria-label="Mobile navigation"
-      >
-        {sections.map((section, i) => (
-          <MobileNavItem
-            key={section}
-            section={section}
-            i={i}
-            isMobileMenuOpen={isMobileMenuOpen}
-            onScroll={scrollToSection}
-            mobileItemVariants={mobileItemVariants}
-          />
-        ))}
-      </motion.div>
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            id="mobile-menu"
+            className="mobile-menu"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            role="navigation"
+            aria-label="Mobile navigation"
+          >
+            {sections.map((section, i) => (
+              <MobileNavItem
+                key={section}
+                section={section}
+                i={i}
+                isMobileMenuOpen={isMobileMenuOpen}
+                onScroll={scrollToSection}
+                mobileItemVariants={mobileItemVariants}
+                isActive={activeSection === section}
+              />
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Status Card - Desktop Only */}
       <motion.div variants={itemVariants} className="glass-card">

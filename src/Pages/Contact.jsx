@@ -107,7 +107,7 @@ export default function Contact() {
   );
 
   return (
-    <div className="contact-wrapper">
+    <div id="contact" className="contact-wrapper">
       <div ref={lineRef} className="contact-line"></div>
       <motion.div
         className="contact-inner"
@@ -162,7 +162,7 @@ export default function Contact() {
 
           {/* Download Resume Button */}
           <motion.a
-            href="/resume.pdf"
+            href="/Sarveswaran-MG-Software-Developer.pdf"
             download
             className="resume-btn"
             whileHover={{ y: -8, scale: 1.1 }}

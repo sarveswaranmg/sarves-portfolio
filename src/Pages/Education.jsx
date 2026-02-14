@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import "./Education.css";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import LightRays from "../Components/LightRays"; // adjust path
+import LightRays from "../Components/LightRays";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -13,7 +13,6 @@ const Education = () => {
   const shadowState = useRef({ x: 0, y: 0, targetX: 0, targetY: 0 });
   const animationFrameRef = useRef(null);
   const isMobile = typeof window !== "undefined" && window.innerWidth <= 768;
-  const [hasDeviceOrientation, setHasDeviceOrientation] = useState(false);
 
   useEffect(() => {
     // Animate line
@@ -66,7 +65,7 @@ const Education = () => {
 
       // Only update DOM when shadow actually changed (> 0.5px difference)
       const roundedX = Math.round(state.x * 0.6 * 10) / 10;
-      const roundedY = Math.round(state.y * 0.8 * 10) / 10;
+      const roundedY = Math.max(0, Math.round(state.y * 0.8 * 10) / 10);
 
       if (
         Math.abs(roundedX - lastShadowX) > 0.5 ||
@@ -77,7 +76,7 @@ const Education = () => {
 
         // Direct DOM manipulation instead of setState to avoid React re-renders
         if (cardRef.current) {
-          cardRef.current.style.boxShadow = `${roundedX}px ${roundedY}px 10px 5px rgba(255, 255, 255, 0.05)`;
+          cardRef.current.style.boxShadow = `${roundedX}px ${roundedY}px 20px 8px rgba(255, 255, 255, 0.12)`;
         }
       }
 
@@ -94,79 +93,40 @@ const Education = () => {
   }, []);
 
   useEffect(() => {
-    const handleDeviceOrientation = (event) => {
-      if (!cardRef.current) return;
+    if (isMobile) {
+      // Auto-animate shadow drift on mobile
+      let time = 0;
+      const driftLoop = () => {
+        time += 0.04;
+        shadowState.current.targetX = Math.sin(time * 1.2) * 20;
+        shadowState.current.targetY = Math.abs(Math.cos(time * 0.8)) * 8;
+        requestAnimationFrame(driftLoop);
+      };
+      const id = requestAnimationFrame(driftLoop);
+      return () => cancelAnimationFrame(id);
+    }
 
-      // Get device orientation angles
-      const alpha = event.alpha || 0; // Z axis rotation (0-360)
-      const beta = event.beta || 0; // X axis rotation (-180 to 180)
-      const gamma = event.gamma || 0; // Y axis rotation (-90 to 90)
-
-      // Use beta and gamma for hologram effect (tilt angles)
-      // Normalize angles to shadow offset range
-      const shadowDistance = 40;
-      const shadowX = (gamma / 90) * shadowDistance;
-      const shadowY = (beta / 90) * shadowDistance;
-
-      shadowState.current.targetX = shadowX;
-      shadowState.current.targetY = shadowY;
-    };
-
+    // Desktop: mouse tracking
     const handleMouseMove = (e) => {
-      if (!cardRef.current || isMobile) return;
-
+      if (!cardRef.current) return;
       const card = cardRef.current;
       const rect = card.getBoundingClientRect();
       const cardCenterX = rect.left + rect.width / 2;
       const cardCenterY = rect.top + rect.height / 2;
-
-      const mouseX = e.clientX;
-      const mouseY = e.clientY;
-
-      // Calculate angle and distance
-      const deltaX = mouseX - cardCenterX;
-      const deltaY = mouseY - cardCenterY;
+      const deltaX = e.clientX - cardCenterX;
+      const deltaY = e.clientY - cardCenterY;
       const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
       const angle = Math.atan2(deltaY, deltaX);
-
-      // Calculate shadow offset based on cursor position
       const shadowDistance = Math.min(distance / 10, 60);
       shadowState.current.targetX = Math.cos(angle) * shadowDistance;
-      shadowState.current.targetY = Math.sin(angle) * shadowDistance;
+      shadowState.current.targetY = Math.max(
+        0,
+        Math.sin(angle) * shadowDistance,
+      );
     };
 
-    // Request device orientation permission for iOS 13+
-    if (
-      isMobile &&
-      typeof DeviceOrientationEvent !== "undefined" &&
-      DeviceOrientationEvent.requestPermission
-    ) {
-      DeviceOrientationEvent.requestPermission()
-        .then((permission) => {
-          if (permission === "granted") {
-            setHasDeviceOrientation(true);
-            window.addEventListener(
-              "deviceorientation",
-              handleDeviceOrientation,
-            );
-          }
-        })
-        .catch(console.error);
-    } else if (isMobile && typeof DeviceOrientationEvent !== "undefined") {
-      // Android and older iOS
-      setHasDeviceOrientation(true);
-      window.addEventListener("deviceorientation", handleDeviceOrientation);
-    }
-
-    // Desktop mouse tracking
-    if (!isMobile) {
-      window.addEventListener("mousemove", handleMouseMove);
-    }
-
-    return () => {
-      window.removeEventListener("deviceorientation", handleDeviceOrientation);
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [isMobile]);
 
   return (
@@ -179,16 +139,17 @@ const Education = () => {
         <LightRays
           raysOrigin="top-center"
           raysColor="#ffffff"
-          raysSpeed={0.1}
-          lightSpread={0.4}
-          rayLength={3.1}
+          raysSpeed={isMobile ? 0.08 : 0.1}
+          lightSpread={isMobile ? 0.15 : 0.4}
+          rayLength={isMobile ? 2.2 : 3.1}
           pulsating={false}
-          fadeDistance={0.5}
-          saturation={0.7}
-          followMouse
-          mouseInfluence={0.2}
+          fadeDistance={isMobile ? 0.4 : 0.5}
+          saturation={isMobile ? 0.8 : 0.7}
+          followMouse={!isMobile}
+          mouseInfluence={0.35}
           noiseAmount={0.15}
           distortion={0}
+          autoAnimate={isMobile}
         />
       </div>
 

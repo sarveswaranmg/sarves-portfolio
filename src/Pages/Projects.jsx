@@ -19,13 +19,13 @@ function Projects() {
       },
       {
         title: "Fenivi",
-        url: "https://fenivi-6gnz.vercel.app/",
+        url: "https://www.feniviresearch.com/",
         description:
           "Single Page Application with real-time events, blogs, and articles. Integrated Firestore subscriptions for dynamic updates. Modern animated UI using Tailwind CSS and modular components.",
       },
       {
         title: "Porous Being",
-        url: "https://porous-being.vercel.app/",
+        url: "https://www.porousbeing.com/",
         description:
           "Architecture portfolio with horizontal galleries and modal views. Implemented smooth GSAP animations and optimized media loading. Responsive and SEO-friendly design with clean UI experience.",
       },
@@ -79,7 +79,7 @@ function Projects() {
   }, []);
 
   return (
-    <section className="projects-section">
+    <section id="projects" className="projects-section">
       <div ref={lineRef} className="projects-line"></div>
 
       <div className="projects-container">
@@ -117,6 +117,7 @@ function Projects() {
                     border: "none",
                     borderRadius: "8px",
                     backgroundColor: "#ffffff",
+                    pointerEvents: "none",
                   }}
                 />
               </div>

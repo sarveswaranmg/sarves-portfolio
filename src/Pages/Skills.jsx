@@ -33,30 +33,24 @@ import dsaLogo from "../assets/logos/dsa.png";
 function Skills() {
   const allSkills = useMemo(
     () => [
-      // Frontend
-      { name: "DSA", icon: dsaLogo, level: 7, color: "#fb6161" },
-      { name: "React.js", icon: reactLogo, level: 8, color: "#61DBFB" },
-      { name: "JavaScript", icon: jsLogo, level: 8, color: "#F7DF1E" },
-      { name: "HTML5", icon: htmlLogo, level: 7, color: "#E34F26" },
-      { name: "CSS3", icon: cssLogo, level: 6, color: "#1572B6" },
-      { name: "Tailwind CSS", icon: tailwindLogo, level: 6, color: "#38BDF8" },
-
-      // Backend
-      { name: "Node.js", icon: nodeLogo, level: 6, color: "#68A063" },
+      { name: "DSA", icon: dsaLogo, level: 7, color: "#000033" },
+      { name: "React.js", icon: reactLogo, level: 8, color: "#71bfdb" },
+      { name: "JavaScript", icon: jsLogo, level: 8, color: "#f3e051" },
+      { name: "HTML5", icon: htmlLogo, level: 7, color: "#cd5b38" },
+      { name: "CSS3", icon: cssLogo, level: 6, color: "#3a64e9" },
+      { name: "Tailwind CSS", icon: tailwindLogo, level: 6, color: "#60a6b1" },
+      { name: "Node.js", icon: nodeLogo, level: 6, color: "#94cb4a" },
       { name: "Express.js", icon: expressLogo, level: 6, color: "#ffffff" },
-      { name: "REST APIs", icon: restApiLogo, level: 5, color: "#00ffcc" },
-
-      // Database
-      { name: "MongoDB", icon: mongodbLogo, level: 6, color: "#4DB33D" },
-      { name: "SQL", icon: sqlLogo, level: 7, color: "#336791" },
-      { name: "PostgreSQL", icon: postgresqlLogo, level: 7, color: "#336791" },
-
-      { name: "Java", icon: javaLogo, level: 5, color: "#f89820" },
-      { name: "Python", icon: pythonLogo, level: 6, color: "#3776AB" },
-      { name: "NumPy", icon: numpyLogo, level: 5, color: "#013243" },
-      { name: "Pandas", icon: pandasLogo, level: 5, color: "#150458" },
-      { name: "TensorFlow", icon: tensorflowLogo, level: 5, color: "#FF6F00" },
-      { name: "Tableau", icon: tableauLogo, level: 7, color: "#FF6F00" },
+      { name: "REST APIs", icon: restApiLogo, level: 5, color: "#ffffff" },
+      { name: "MongoDB", icon: mongodbLogo, level: 6, color: "#65a657" },
+      { name: "SQL", icon: sqlLogo, level: 7, color: "#55b9ed" },
+      { name: "PostgreSQL", icon: postgresqlLogo, level: 7, color: "#40668e" },
+      { name: "Java", icon: javaLogo, level: 5, color: "#d8762c" },
+      { name: "Python", icon: pythonLogo, level: 6, color: "#f3cc48" },
+      { name: "NumPy", icon: numpyLogo, level: 5, color: "#5776c9" },
+      { name: "Pandas", icon: pandasLogo, level: 5, color: "#d42e86" },
+      { name: "TensorFlow", icon: tensorflowLogo, level: 5, color: "#e0933f" },
+      { name: "Tableau", icon: tableauLogo, level: 7, color: "#b7333b" },
     ],
     [],
   );
@@ -64,6 +58,7 @@ function Skills() {
   const [selectedSkill, setSelectedSkill] = useState(null);
   const [showAllRatings, setShowAllRatings] = useState(false);
   const [draggedSkillMobile, setDraggedSkillMobile] = useState(null);
+  const [touchPos, setTouchPos] = useState({ x: 0, y: 0 });
   const lineRef = useRef(null);
   const dropCircleRef = useRef(null);
 
@@ -93,8 +88,11 @@ function Skills() {
   useEffect(() => {
     const handleGlobalTouchMove = (e) => {
       if (!draggedSkillMobile || !dropCircleRef.current) return;
+      e.preventDefault();
 
       const touch = e.touches[0];
+      setTouchPos({ x: touch.clientX, y: touch.clientY });
+
       const dropCircle = dropCircleRef.current.getBoundingClientRect();
 
       // Check if touch is within drop circle
@@ -170,12 +168,14 @@ function Skills() {
   const handleTouchStart = useCallback((e, skill) => {
     if (e.touches.length === 1) {
       e.preventDefault();
+      const touch = e.touches[0];
+      setTouchPos({ x: touch.clientX, y: touch.clientY });
       setDraggedSkillMobile(skill);
     }
   }, []);
 
   return (
-    <section className="skills-section">
+    <section id="skills" className="skills-section">
       <div ref={lineRef} className="skills-line"></div>
       <div className="skills-container">
         <div className="skills-header">
@@ -256,6 +256,21 @@ function Skills() {
           ))}
         </div>
       </div>
+
+      {/* Floating drag ghost for mobile */}
+      {draggedSkillMobile && (
+        <div
+          className="drag-ghost"
+          style={{
+            left: touchPos.x,
+            top: touchPos.y,
+            borderColor: draggedSkillMobile.color,
+            boxShadow: `0 0 20px ${draggedSkillMobile.color}80`,
+          }}
+        >
+          <img src={draggedSkillMobile.icon} alt={draggedSkillMobile.name} />
+        </div>
+      )}
     </section>
   );
 }

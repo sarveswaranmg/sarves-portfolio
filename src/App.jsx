@@ -77,24 +77,12 @@ function App() {
     <>
       <NavBar />
       <Suspense fallback={<LoadingFallback />}>
-        <div id="home">
-          <Home />
-        </div>
-        <div id="about">
-          <About />
-        </div>
-        <div id="projects">
-          <Projects />
-        </div>
-        <div id="skills">
-          <Skills />
-        </div>
-        <div id="education">
-          <Education />
-        </div>
-        <div id="contact">
-          <Contact />
-        </div>
+        <Home />
+        <About />
+        <Projects />
+        <Skills />
+        <Education />
+        <Contact />
       </Suspense>
     </>
   );

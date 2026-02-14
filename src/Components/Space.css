@@ -18,15 +18,52 @@
 
 /* Logos */
 .logoParticle {
-  width: 22px;
-  height: 22px;
-  opacity: 0.6;
+  width: 24px;
+  height: 24px;
+  opacity: 1;
 }
 
 /* Syntax */
 .syntaxParticle {
-  font-size: 8px;
-  color: #00f0ff;
+  font-size: 10px;
+  color: #848484;
+  font-weight: 600;
+}
+
+/* Syntax Particle Color Variants */
+.syntaxParticle.color-cyan {
+  color: #00d9ff;
+  text-shadow: 0 0 8px rgba(0, 217, 255, 0.6);
+}
+
+.syntaxParticle.color-pink {
+  color: #ff006e;
+  text-shadow: 0 0 8px rgba(255, 0, 110, 0.6);
+}
+
+.syntaxParticle.color-lime {
+  color: #39ff14;
+  text-shadow: 0 0 8px rgba(57, 255, 20, 0.6);
+}
+
+.syntaxParticle.color-purple {
+  color: #b366ff;
+  text-shadow: 0 0 8px rgba(179, 102, 255, 0.6);
+}
+
+.syntaxParticle.color-orange {
+  color: #ff8c00;
+  text-shadow: 0 0 8px rgba(255, 140, 0, 0.6);
+}
+
+.syntaxParticle.color-blue {
+  color: #0099ff;
+  text-shadow: 0 0 8px rgba(0, 153, 255, 0.6);
+}
+
+.syntaxParticle.color-green {
+  color: #00ff88;
+  text-shadow: 0 0 8px rgba(0, 255, 136, 0.6);
 }
 
 /* 🚀 Fly + Slight Rotation Combined */
@@ -47,5 +84,21 @@
   100% {
     transform: translateZ(800px) scale(1.4) rotate(calc(var(--rotate) + 220deg)); /* slightly more rotation */
     opacity: 0;
+  }
+}
+
+/* 4K / Ultra-wide screens */
+@media (min-width: 2560px) {
+  .universe {
+    perspective: 1800px;
+  }
+
+  .logoParticle {
+    width: 36px;
+    height: 36px;
+  }
+
+  .syntaxParticle {
+    font-size: 14px;
   }
 }

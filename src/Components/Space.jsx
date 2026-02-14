@@ -68,8 +68,18 @@ function Space() {
       "useRef",
     ];
 
-    const logoCount = 18; // reduced for smooth rendering
-    const symbolCount = 10; // reduced for smooth rendering
+    const colors = [
+      "color-cyan",
+      "color-pink",
+      "color-lime",
+      "color-purple",
+      "color-orange",
+      "color-blue",
+      "color-green",
+    ];
+
+    const logoCount = 28; // reduced for smooth rendering
+    const symbolCount = 20; // reduced for smooth rendering
 
     const createLogo = () => {
       const img = document.createElement("img");
@@ -90,7 +100,8 @@ function Space() {
 
     const createSymbol = () => {
       const el = document.createElement("div");
-      el.className = "syntaxParticle";
+      const randomColor = colors[Math.floor(Math.random() * colors.length)];
+      el.className = `syntaxParticle ${randomColor}`;
       el.innerText = symbols[Math.floor(Math.random() * symbols.length)];
 
       el.style.left = Math.random() * 100 + "vw";

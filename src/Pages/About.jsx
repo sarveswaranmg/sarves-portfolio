@@ -59,7 +59,7 @@ function About() {
   }, []);
 
   return (
-    <section className="about-section">
+    <section id="about" className="about-section">
       <div ref={lineRef} className="about-line"></div>
       <div className="about-content">
         <div className="about-container">

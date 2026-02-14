@@ -51,6 +51,7 @@ const LightRays = ({
   noiseAmount = 0.0,
   distortion = 0.0,
   className = "",
+  autoAnimate = false,
 }) => {
   const containerRef = useRef(null);
   const uniformsRef = useRef(null);
@@ -62,6 +63,9 @@ const LightRays = ({
   const cleanupFunctionRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
   const observerRef = useRef(null);
+  const isMobileRef = useRef(
+    typeof window !== "undefined" && window.innerWidth <= 768,
+  );
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -100,7 +104,7 @@ const LightRays = ({
       if (!containerRef.current) return;
 
       const renderer = new Renderer({
-        dpr: Math.min(window.devicePixelRatio, 2),
+        dpr: isMobileRef.current ? 1 : Math.min(window.devicePixelRatio, 2),
         alpha: true,
       });
       rendererRef.current = renderer;
@@ -394,6 +398,24 @@ void main() {
   ]);
 
   useEffect(() => {
+    if (autoAnimate) {
+      // Gentle auto-drift for mobile — no gyro needed
+      let time = 0;
+      const drift = () => {
+        time += 0.025;
+        mouseRef.current = {
+          x: 0.5 + Math.sin(time * 1.2) * 0.25,
+          y: 0.5 + Math.cos(time * 0.8) * 0.05,
+        };
+        requestAnimationFrame(drift);
+      };
+      const id = requestAnimationFrame(drift);
+      return () => cancelAnimationFrame(id);
+    }
+
+    if (!followMouse) return;
+
+    // Desktop: mouse tracking
     const handleMouseMove = (e) => {
       if (!containerRef.current || !rendererRef.current) return;
       const rect = containerRef.current.getBoundingClientRect();
@@ -402,11 +424,9 @@ void main() {
       mouseRef.current = { x, y };
     };
 
-    if (followMouse) {
-      window.addEventListener("mousemove", handleMouseMove);
-      return () => window.removeEventListener("mousemove", handleMouseMove);
-    }
-  }, [followMouse]);
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [followMouse, autoAnimate]);
 
   return (
     <div

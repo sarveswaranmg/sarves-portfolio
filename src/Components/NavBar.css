@@ -18,7 +18,7 @@
   background: transparent;
   transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: background, box-shadow;
-  contain: layout style paint;
+  contain: layout style;
 }
 
 .nav-container.scrolled {
@@ -283,8 +283,8 @@
 /* Mobile Menu */
 .mobile-menu {
   display: none;
-  position: fixed;
-  top: 80px;
+  position: absolute;
+  top: 100%;
   left: 0;
   right: 0;
   background: rgba(0, 0, 0, 0.98);
@@ -295,7 +295,7 @@
   flex-direction: column;
   gap: 0;
   will-change: opacity, transform;
-  contain: layout style paint;
+  z-index: 999;
 }
 
 .mobile-nav-item {
@@ -311,12 +311,19 @@
   border: none;
   background: transparent;
   width: 100%;
-  text-align: left;
+  text-align: center;
 }
 
 .mobile-nav-item:hover {
   color: white;
   background: rgba(255, 255, 255, 0.05);
+}
+
+.mobile-nav-item.active {
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+  font-weight: 600;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
 }
 
 .mobile-nav-item:focus-visible {
@@ -336,13 +343,36 @@
 }
 
 /* Responsive */
-@media (max-width: 1024px) {
+@media (max-width: 1280px) {
   .nav-container {
-    padding: 15px 30px;
+    padding: 18px 30px;
   }
 
   .nav-bar {
-    gap: 25px;
+    gap: 30px;
+  }
+
+  .left-name {
+    font-size: 26px;
+  }
+
+  .nav-item {
+    font-size: 13px;
+  }
+
+  .glass-card {
+    font-size: 12px;
+    padding: 10px 16px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .nav-container {
+    padding: 15px 24px;
+  }
+
+  .nav-bar {
+    gap: 20px;
   }
 
   .left-name {
@@ -355,11 +385,12 @@
 
   .nav-item {
     font-size: 12px;
+    letter-spacing: 0.5px;
   }
 
   .glass-card {
     font-size: 11px;
-    padding: 10px 16px;
+    padding: 8px 14px;
   }
 }
 
@@ -379,9 +410,14 @@
   }
 
   .left-name-container {
-    flex: 0 0 auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: fit-content;
     order: 2;
     text-align: center;
+    pointer-events: auto;
   }
 
   .left-name {
@@ -406,8 +442,6 @@
 
   .mobile-menu {
     display: flex;
-    position: fixed;
-    top: 70px;
   }
 
   .glass-card {
@@ -443,10 +477,15 @@
   }
 
   .left-name-container {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: fit-content;
     font-size: 18px;
-    flex: 0 0 auto;
     order: 2;
     text-align: center;
+    pointer-events: auto;
   }
 
   .nav-bar {
@@ -468,7 +507,6 @@
 
   .mobile-menu {
     display: flex;
-    top: 65px;
   }
 
   .mobile-nav-item {
@@ -492,5 +530,52 @@
   .status-dot {
     width: 5px;
     height: 5px;
+  }
+}
+
+/* 4K / Ultra-wide screens */
+@media (min-width: 2560px) {
+  .nav-container {
+    padding: 28px 60px;
+  }
+
+  .nav-container.scrolled {
+    padding: 22px 60px;
+  }
+
+  .left-name {
+    font-size: 38px;
+  }
+
+  .nav-bar {
+    gap: 55px;
+    font-size: 18px;
+  }
+
+  .nav-item {
+    font-size: 17px;
+    letter-spacing: 1px;
+    padding: 10px 0;
+  }
+
+  .glass-card {
+    font-size: 16px;
+    padding: 14px 26px;
+    gap: 12px;
+    border-radius: 30px;
+  }
+
+  .status-dot {
+    width: 10px;
+    height: 10px;
+  }
+
+  .underline {
+    height: 2.5px;
+  }
+
+  .name-underline {
+    bottom: -10px;
+    height: 2.5px;
   }
 }
