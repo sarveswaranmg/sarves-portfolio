@@ -78,10 +78,38 @@ function NavBar() {
       observerOptions,
     );
 
-    sections.forEach((section) => {
-      const element = document.getElementById(section.toLowerCase());
-      if (element) observer.observe(element);
-    });
+    // Attempt to observe sections and retry for lazy-loaded elements
+    const observeSections = () => {
+      let observedCount = 0;
+      sections.forEach((section) => {
+        const element = document.getElementById(section.toLowerCase());
+        if (element) {
+          observer.observe(element);
+          observedCount++;
+        }
+      });
+      return observedCount;
+    };
+
+    // Initial attempt
+    let observedCount = observeSections();
+
+    // If no sections were found (likely due to lazy loading), retry periodically
+    let retryTimeout;
+    if (observedCount === 0) {
+      const maxRetries = 20;
+      let retryCount = 0;
+
+      const retryObserve = () => {
+        observedCount = observeSections();
+        if (observedCount < sections.length && retryCount < maxRetries) {
+          retryCount++;
+          retryTimeout = setTimeout(retryObserve, 200);
+        }
+      };
+
+      retryTimeout = setTimeout(retryObserve, 200);
+    }
 
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -91,6 +119,7 @@ function NavBar() {
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      if (retryTimeout) clearTimeout(retryTimeout);
       sections.forEach((section) => {
         const element = document.getElementById(section.toLowerCase());
         if (element) observer.unobserve(element);
