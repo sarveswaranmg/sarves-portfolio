@@ -49,18 +49,28 @@ function NavBar() {
 
   useEffect(() => {
     const observerOptions = {
-      threshold: 0,
-      rootMargin: "-100px 0px -80% 0px",
+      threshold: [0, 0.3, 0.5],
+      rootMargin: "-50px 0px -50% 0px",
     };
 
     const observerCallback = (entries) => {
+      // Find the most visible section
+      let mostVisibleEntry = null;
+      let maxVisibility = 0;
+
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveSection(
-            entry.target.id.charAt(0).toUpperCase() + entry.target.id.slice(1),
-          );
+        if (entry.isIntersecting && entry.intersectionRatio > maxVisibility) {
+          maxVisibility = entry.intersectionRatio;
+          mostVisibleEntry = entry;
         }
       });
+
+      if (mostVisibleEntry) {
+        setActiveSection(
+          mostVisibleEntry.target.id.charAt(0).toUpperCase() +
+            mostVisibleEntry.target.id.slice(1),
+        );
+      }
     };
 
     const observer = new IntersectionObserver(
