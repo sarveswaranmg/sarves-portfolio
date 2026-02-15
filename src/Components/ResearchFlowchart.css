@@ -1,0 +1,71 @@
+.research-flowchart {
+  width: 100%;
+  background: #000;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.research-flowchart.preview {
+  height: 220px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+}
+
+.research-flowchart.full {
+  height: 550px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Override ReactFlow styles for dark theme */
+.research-flowchart .react-flow__node {
+  cursor: default;
+}
+
+.research-flowchart.full .react-flow__node {
+  cursor: grab;
+}
+
+.research-flowchart.full .react-flow__node:active {
+  cursor: grabbing;
+}
+
+.research-flowchart .react-flow__edge-path {
+  stroke: #fff !important;
+}
+
+.research-flowchart .react-flow__controls {
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.research-flowchart .react-flow__controls button {
+  background: white;
+  border: none;
+  color: #fff;
+}
+
+.research-flowchart .react-flow__attribution {
+  opacity: 0.3;
+  font-size: 8px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .research-flowchart.preview {
+    height: 170px;
+  }
+
+  .research-flowchart.full {
+    height: 450px;
+  }
+}
+
+@media (max-width: 480px) {
+  .research-flowchart.preview {
+    height: 140px;
+  }
+
+  .research-flowchart.full {
+    height: 380px;
+  }
+}
