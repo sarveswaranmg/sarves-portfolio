@@ -25,20 +25,39 @@ export default defineConfig({
     // Optimize build output with code splitting
     rollupOptions: {
       output: {
-        // Code splitting strategy for better caching
+        // Fixed code splitting strategy to avoid circular dependencies
         manualChunks: (id) => {
-          // Vendor libraries
+          // Vendor libraries - more specific to avoid circular deps
           if (id.includes("node_modules")) {
+            // React core and related packages together
+            if (
+              id.includes("react") ||
+              id.includes("react-dom") ||
+              id.includes("scheduler")
+            ) {
+              return "vendor-react";
+            }
+            // Animation libraries
             if (id.includes("framer-motion")) {
               return "vendor-framer";
             }
             if (id.includes("gsap")) {
               return "vendor-gsap";
             }
-            if (id.includes("react")) {
-              return "vendor-react";
+            // React Flow and its dependencies
+            if (id.includes("reactflow") || id.includes("@xyflow")) {
+              return "vendor-flow";
             }
-            return "vendor-common";
+            // Email and other utilities
+            if (
+              id.includes("@emailjs") ||
+              id.includes("lenis") ||
+              id.includes("ogl")
+            ) {
+              return "vendor-utils";
+            }
+            // All other node_modules
+            return "vendor-libs";
           }
 
           // Component chunks for lazy loading
