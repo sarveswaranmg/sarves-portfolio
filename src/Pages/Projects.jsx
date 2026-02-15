@@ -63,7 +63,9 @@ const ResearchCard = memo(({ paper, onPaperView, cardRef }) => {
             aria-label={`Learn more about ${paper.title}`}
           >
             Learn More
-            <span className="arrow" aria-hidden="true">→</span>
+            <span className="arrow" aria-hidden="true">
+              →
+            </span>
           </button>
           {paper.published && (
             <a
@@ -76,7 +78,9 @@ const ResearchCard = memo(({ paper, onPaperView, cardRef }) => {
               itemProp="url"
             >
               View Publication
-              <span className="arrow" aria-hidden="true">↗</span>
+              <span className="arrow" aria-hidden="true">
+                ↗
+              </span>
             </a>
           )}
         </div>
@@ -85,7 +89,7 @@ const ResearchCard = memo(({ paper, onPaperView, cardRef }) => {
   );
 });
 
-ResearchCard.displayName = 'ResearchCard';
+ResearchCard.displayName = "ResearchCard";
 
 function Projects() {
   const lineRef = useRef(null);
@@ -605,19 +609,19 @@ function Projects() {
   const handlePaperView = useCallback((paper) => {
     setSelectedPaper(paper);
     // Prevent body scroll when modal is open
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = "hidden";
   }, []);
 
   const closeModal = useCallback(() => {
     setSelectedPaper(null);
     // Restore body scroll
-    document.body.style.overflow = '';
+    document.body.style.overflow = "";
   }, []);
 
   // Cleanup on unmount
   useEffect(() => {
     return () => {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     };
   }, []);
 
@@ -720,18 +724,18 @@ function Projects() {
     const structuredData = {
       "@context": "https://schema.org",
       "@type": "ItemList",
-      "name": "Research & Publications",
-      "description": "Collection of academic research papers and publications",
-      "numberOfItems": researchPapers.length,
-      "itemListElement": researchPapers.map((paper, index) => ({
+      name: "Research & Publications",
+      description: "Collection of academic research papers and publications",
+      numberOfItems: researchPapers.length,
+      itemListElement: researchPapers.map((paper, index) => ({
         "@type": "ListItem",
-        "position": index + 1,
-        "item": {
+        position: index + 1,
+        item: {
           "@type": "ScholarlyArticle",
-          "name": paper.title,
-          "description": paper.abstract,
-          "keywords": paper.tags.join(", "),
-          ...(paper.published && { "url": paper.published }),
+          name: paper.title,
+          description: paper.abstract,
+          keywords: paper.tags.join(", "),
+          ...(paper.published && { url: paper.published }),
         },
       })),
     };
@@ -795,7 +799,10 @@ function Projects() {
       {/* Research & Publications Section */}
       <div ref={researchLineRef} className="research-line"></div>
 
-      <section className="research-container" aria-labelledby="research-heading">
+      <section
+        className="research-container"
+        aria-labelledby="research-heading"
+      >
         <h2 id="research-heading" className="research-head">
           {"Research & Publications".split(" ").map((word, index) => (
             <span key={index}>{word} </span>
@@ -817,8 +824,8 @@ function Projects() {
 
       {/* Research Details Modal */}
       {selectedPaper && (
-        <div 
-          className="modal-overlay" 
+        <div
+          className="modal-overlay"
           onClick={closeModal}
           role="dialog"
           aria-modal="true"
@@ -826,9 +833,11 @@ function Projects() {
         >
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <div className="modal-header">
-              <h3 id="modal-title" className="modal-title">{selectedPaper.title}</h3>
-              <button 
-                className="modal-close" 
+              <h3 id="modal-title" className="modal-title">
+                {selectedPaper.title}
+              </h3>
+              <button
+                className="modal-close"
                 onClick={closeModal}
                 aria-label="Close modal"
               >
