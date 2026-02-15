@@ -10,19 +10,19 @@
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/public/favi.png",
+      "src": "/favi.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/public/favi.png",
+      "src": "/favi.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/public/favi.png",
+      "src": "/favi.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "maskable"
@@ -30,13 +30,13 @@
   ],
   "screenshots": [
     {
-      "src": "/public/favi.png",
+      "src": "/favi.png",
       "sizes": "540x720",
       "type": "image/png",
       "form_factor": "narrow"
     },
     {
-      "src": "/public/favi.png",
+      "src": "/favi.png",
       "sizes": "1280x720",
       "type": "image/png",
       "form_factor": "wide"
@@ -51,7 +51,7 @@
       "url": "/?section=skills",
       "icons": [
         {
-          "src": "/public/favi.png",
+          "src": "/favi.png",
           "sizes": "192x192"
         }
       ]
@@ -63,7 +63,7 @@
       "url": "/?section=projects",
       "icons": [
         {
-          "src": "/public/favi.png",
+          "src": "/favi.png",
           "sizes": "192x192"
         }
       ]
@@ -75,7 +75,7 @@
       "url": "/?section=contact",
       "icons": [
         {
-          "src": "/public/favi.png",
+          "src": "/favi.png",
           "sizes": "192x192"
         }
       ]

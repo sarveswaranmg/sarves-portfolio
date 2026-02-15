@@ -146,16 +146,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <!-- Security Headers -->
+    <!-- Compatibility -->
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' data: https:; frame-ancestors 'none';"
-    />
-    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
-    <meta http-equiv="X-Frame-Options" content="DENY" />
-    <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
-    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    
+    <!-- Note: Security headers (CSP, X-Frame-Options, etc.) are set via server configuration in netlify.toml/vercel.json -->
+    <!-- Setting them in meta tags will cause warnings and won't work properly -->
 
     <title>Sarves's</title>
   </head>
@@ -244,7 +239,7 @@
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", () => {
           navigator.serviceWorker
-            .register("/public/sw.js", { scope: "/" })
+            .register("/sw.js", { scope: "/" })
             .then((registration) => {
               console.log("[App] Service Worker registered:", registration);
 
