@@ -5,6 +5,7 @@ import React, {
   useCallback,
   useRef,
 } from "react";
+// eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
 import "./NavBar.css";
 
@@ -37,64 +38,69 @@ const MobileNavItem = React.memo(
 MobileNavItem.displayName = "MobileNavItem";
 
 function NavBar() {
-  const [activeSection, setActiveSection] = useState("Home");
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const navRef = useRef(null);
-
   const sections = useMemo(
     () => ["Home", "About", "Projects", "Skills", "Education", "Contact"],
     [],
   );
 
+  // Initialize activeSection with the current section in view
+  const [activeSection, setActiveSection] = useState(() => {
+    if (typeof window === "undefined") return "Home";
+
+    const scrollPosition = window.scrollY + 100;
+    for (let i = sections.length - 1; i >= 0; i--) {
+      const element = document.getElementById(sections[i].toLowerCase());
+      if (element && scrollPosition >= element.offsetTop) {
+        return sections[i];
+      }
+    }
+    return "Home";
+  });
+
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navRef = useRef(null);
+
   useEffect(() => {
-    const observerOptions = {
-      threshold: [0, 0.3, 0.5],
-      rootMargin: "-50px 0px -50% 0px",
+    let ticking = false;
+
+    const getSectionInView = () => {
+      const scrollPosition = window.scrollY + 100; // Offset for navbar height
+
+      // Find the section that's currently in view
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = sections[i];
+        const element = document.getElementById(section.toLowerCase());
+
+        if (element) {
+          const { offsetTop } = element;
+          if (scrollPosition >= offsetTop) {
+            return section;
+          }
+        }
+      }
+
+      // Default to Home if nothing matches
+      return "Home";
     };
 
-    const observerCallback = (entries) => {
-      // Find the most visible section
-      let mostVisibleEntry = null;
-      let maxVisibility = 0;
-
-      entries.forEach((entry) => {
-        if (entry.isIntersecting && entry.intersectionRatio > maxVisibility) {
-          maxVisibility = entry.intersectionRatio;
-          mostVisibleEntry = entry;
-        }
-      });
-
-      if (mostVisibleEntry) {
-        setActiveSection(
-          mostVisibleEntry.target.id.charAt(0).toUpperCase() +
-            mostVisibleEntry.target.id.slice(1),
-        );
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentSection = getSectionInView();
+          setActiveSection(currentSection);
+          setIsScrolled(window.scrollY > 50);
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
-    const observer = new IntersectionObserver(
-      observerCallback,
-      observerOptions,
-    );
-
-    sections.forEach((section) => {
-      const element = document.getElementById(section.toLowerCase());
-      if (element) observer.observe(element);
-    });
-
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener("scroll", handleScroll);
+    // Add scroll listener
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      sections.forEach((section) => {
-        const element = document.getElementById(section.toLowerCase());
-        if (element) observer.unobserve(element);
-      });
     };
   }, [sections]);
 
