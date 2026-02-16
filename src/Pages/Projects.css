@@ -451,7 +451,7 @@
   letter-spacing: 0.5px;
   text-decoration: none;
   transition: all 0.3s ease;
-  cursor: pointer;
+
   margin-bottom: 4px;
 }
 
@@ -870,9 +870,9 @@
   gap: 8px;
   padding: 14px 28px;
   background: #000000;
-  border: 2px solid #ffd700;
+  border: 2px solid #d2b791;
   border-radius: 999px;
-  color: #ffd700;
+  color: #d2b791;
   text-decoration: none;
   font-size: 0.95rem;
   font-weight: 600;
@@ -880,7 +880,7 @@
 }
 
 .modal-published-link:hover {
-  background: #ffd700;
+  background: #d2b791;
   color: #000000;
   transform: translateX(4px);
   box-shadow: 0 4px 16px rgba(255, 215, 0, 0.4);

@@ -29,12 +29,9 @@ const ResearchCard = memo(({ paper, onPaperView, cardRef }) => {
       <div className="research-body">
         {paper.published && (
           <a
-            href={paper.published}
             target="_blank"
             rel="noopener noreferrer"
             className="published-badge"
-            onClick={(e) => e.stopPropagation()}
-            aria-label={`View published paper: ${paper.title}`}
           >
             Published
           </a>
@@ -139,7 +136,7 @@ function Projects() {
           "Time Series Analysis",
         ],
         abstract:
-          "The study predicts India's GDP per capita using historical economic indicators from 1960–2021. Ensemble modeling combining ARIMA, SVR, and XGBoost improves forecasting accuracy and reveals relationships between socio-economic factors and economic growth.",
+          "This paper is about identifying the contributing socio-economic indicators that affect the Gross Domestic Product Per Capita of India with historical data from 1960 to 2021 and build a methodology to predict the Gross Domestic Product per capita based on the contributing factors. To predict India's GDP per capita, an ensemble prediction was used, which included Support Vector Regression (SVR), the Extreme Gradient Boosting Model, and the ARIMA Model. It is critical to forecast GDP per capita and its influencing factors for better policy formulation, resource allocation, risk management, investment decisions, long-term planning, social welfare, and other purposes. This paper could contribute to encouraging long-term economic growth and improve citizens' quality of life. The findings of this paper provide an in-depth understanding of the intricate relationship between socioeconomic indicators and Gross Domestic Product in India.",
         flowNodes: [
           {
             id: "1",
@@ -236,7 +233,7 @@ function Projects() {
           "Network Security Protocols",
         ],
         abstract:
-          "This work presents a secure chat application implementing end-to-end encryption using AES symmetric encryption combined with Diffie-Hellman key exchange. The shared key generation ensures secure communication over public channels while protecting message confidentiality and integrity.",
+          "In this paper, a secure chatting application with end to end encryption for chat system has been proposed. This is achieved by the use of public key cryptography techniques. The proposed application used the Elliptic Curve Diffie Hellman Key Exchange (ECDH) algorithm to generate the key pair and exchange to produce the shared key that will be used for the encryption of data by symmetric algorithms. The proposed Application allows the users to communicate via text messages.For the text message security the standard AES algorithm with a 128 bit key.",
         flowNodes: [
           {
             id: "1",
@@ -309,7 +306,7 @@ function Projects() {
           "ROUGE & BLEU Metrics",
         ],
         abstract:
-          "The system extracts transcripts from video input, generates extractive and abstractive summaries, and translates output into user-preferred languages. NLP techniques and evaluation metrics such as ROUGE and BLEU are used to assess summarization quality, improving accessibility of multimedia information.",
+          "All of us are in need of some application that is able to save our time from watching a full lengthy video to get information. Video to text summarization along with language translation is very useful for most students and for those who wish to read the content instead of watching a video. We have proposed a system that transforms video to text , summarizes the text and then a translator to switch languages according to our need. People often prefer to communicate using their mother tongue. It is the language with which they are most comfortable communicating and the one that they use in their day-to-day activities. This is the reason why we ask individuals to translate the material into their native language; it will help people better grasp the content. The purpose of this work is to guarantee that the information presented in the video is understood by all individuals in the simplest and most accurate manner possible.",
         flowNodes: [
           { id: "1", label: "Video Input", type: "start", row: 0, col: 1 },
           {
@@ -517,7 +514,7 @@ function Projects() {
           "Privacy Engineering",
         ],
         abstract:
-          "This research presents a consent-based face recognition system designed to protect privacy in social media platforms. The system uses state-of-the-art deep learning models (MTCNN for detection and ResNet for embeddings) to identify individuals in uploaded images and automatically sends consent requests before publication. Users maintain control over their digital presence through an approval workflow that respects privacy while maintaining social connectivity. The architecture combines React frontend, Nhost backend, and Python microservices for scalable, real-time privacy protection.",
+          "In today’s digital world, the widespread use of social media has led to increasing concerns about privacy, particularly around the unauthorized sharing of personal images. This project presents a privacy-focused social media application that integrates a face matching system to protect user identity. The core idea is to ensure that any image containing a registered user's face is not published without their explicit consent.The system uses a Python-based backend service integrated with a React frontend and Nhost for authentication, database, and storage. It employs MTCNN (Multi-task Cascaded Convolutional Neural Network) for accurate face detection and a ResNet-based deep learning model to extract high-dimensional face embeddings. These embeddings are compared using cosine similarity to detect matches with stored user data. If a match is found above a predefined similarity threshold, the matched user’s UUID is returned, and a consent-based notification system is triggered before publishing the image. Extensive evaluation on ten test cases demonstrated the system’s reliability in detecting faces, generating accurate matches, and performing fast enough for near real-time applications. It successfully identified registered users despite variations in pose, lighting, and expression, with each test completing the full process — from detection to notification — effectively. This approach aligns with privacy-by-design principles and demonstrates a practical solution for ethical image sharing on digital platforms. Future developments could include deploying the system in other applications, integrating enhanced features for usability and scalability, and enabling a secure Web3-based identity management system for celebrities and public figures to maintain ownership over their visual presence online.",
         flowNodes: [
           { id: "1", label: "User Ecosystem", type: "start", row: 0, col: 1 },
           {
