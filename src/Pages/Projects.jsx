@@ -801,7 +801,7 @@ function Projects() {
         aria-labelledby="research-heading"
       >
         <h2 id="research-heading" className="research-head">
-          {"Research & Publications".split(" ").map((word, index) => (
+          {"Research & Paper Works".split(" ").map((word, index) => (
             <span key={index}>{word} </span>
           ))}
         </h2>
