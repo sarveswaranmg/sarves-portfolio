@@ -21,7 +21,8 @@
     "react-dom": "^18.3.1",
     "react-typed": "^2.0.12",
     "reactflow": "^11.11.4",
-    "terser": "^5.46.0"
+    "terser": "^5.46.0",
+    "web-vitals": "^5.1.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
@@ -32,6 +33,8 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
     "globals": "^16.5.0",
-    "vite": "^7.2.4"
+    "sharp": "^0.34.5",
+    "vite": "^7.2.4",
+    "vite-plugin-image-optimizer": "^2.0.3"
   }
 }
