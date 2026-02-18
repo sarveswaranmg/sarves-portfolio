@@ -1,7 +1,8 @@
 import { ReactTyped } from "react-typed";
 import { motion } from "framer-motion";
 import { useMemo, useState, useEffect } from "react";
-import profileImg from "../assets/final.png";
+import profileImgWebP from "../assets/final-optimized.webp";
+import profileImgPNG from "../assets/final-optimized.png";
 import "./Home.css";
 import Space from "../Components/Space";
 
@@ -118,16 +119,21 @@ function Home() {
           ease: "easeOut",
         }}
       >
-        <motion.img
-          className="home-image"
-          src={profileImg}
-          alt="profile"
-          variants={imageVariants}
-          animate={floatingAnimation}
-          transition={floatingTransition}
-          loading="eager"
-          decoding="async"
-        />
+        <picture>
+          <source srcSet={profileImgWebP} type="image/webp" />
+          <img
+            className="home-image"
+            src={profileImgPNG}
+            alt="profile"
+            loading="eager"
+            decoding="async"
+            style={{
+              animation: prefersReducedMotion
+                ? "none"
+                : "float 6s ease-in-out infinite",
+            }}
+          />
+        </picture>
       </motion.div>
 
       <motion.div className="home-text" variants={textVariants}>

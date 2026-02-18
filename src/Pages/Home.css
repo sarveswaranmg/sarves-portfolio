@@ -20,6 +20,17 @@
   backface-visibility: hidden;
 }
 
+/* Floating animation for image */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
 /* Profile image */
 .home-image {
   height: clamp(40vh, 60vh, 70vh);
@@ -28,6 +39,7 @@
   backface-visibility: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  will-change: transform;
 }
 
 /* Text section */
