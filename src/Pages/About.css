@@ -19,7 +19,7 @@
 }
 
 .about-description {
-  font-size: clamp(18px, 2.5vw, 34px);
+  font-size: clamp(14px, 2vw, 28px);
   line-height: 1.8;
   width: min(60vw, 800px);
   margin: 0;
