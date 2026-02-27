@@ -37,7 +37,7 @@ const MobileNavItem = React.memo(
 
 MobileNavItem.displayName = "MobileNavItem";
 
-function NavBar() {
+function NavBar({ onOpenToWorkClick }) {
   const sections = useMemo(
     () => ["Home", "About", "Projects", "Skills", "Education", "Contact"],
     [],
@@ -360,14 +360,19 @@ function NavBar() {
       </AnimatePresence>
 
       {/* Status Card - Desktop Only */}
-      <motion.div variants={itemVariants} className="glass-card">
+      <motion.button
+        variants={itemVariants}
+        className="glass-card"
+        onClick={onOpenToWorkClick}
+        aria-label="Open to work - Click for more information"
+      >
         <motion.span
           animate={{ scale: [1, 1.2, 1] }}
           transition={{ duration: 2, repeat: Infinity }}
           className="status-dot"
         />
         <span>Open to work</span>
-      </motion.div>
+      </motion.button>
     </motion.nav>
   );
 }

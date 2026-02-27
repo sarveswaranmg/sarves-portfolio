@@ -18,7 +18,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Primary SEO Meta Tags -->
-    <title>Sarves</title>
+    <title>Sarveswaran MG | MERN Full Stack Developer Portfolio</title>
     <meta
       name="title"
       content="Sarveswaran MG – Software Developer & ML Engineer Portfolio"
@@ -94,8 +94,9 @@
       {
         "@context": "https://schema.org",
         "@type": "Person",
+        "@id": "https://sarves.dev/#person",
         "name": "Sarveswaran MG",
-        "alternateName": "Sarves",
+        "alternateName": ["Sarves", "Sarveswaran"],
         "url": "https://sarves.dev",
         "image": "https://sarves.dev/preview.png",
         "jobTitle": "Software Developer",
@@ -133,8 +134,7 @@
         "url": "https://sarves.dev",
         "description": "Portfolio of Sarveswaran MG (Sarves) - Software Developer & ML Engineer",
         "author": {
-          "@type": "Person",
-          "name": "Sarveswaran MG"
+          "@id": "https://sarves.dev/#person"
         }
       }
     </script>
@@ -209,14 +209,6 @@
 
     <!-- Prevent debugging -->
     <script>
-      // Disable right-click context menu on production
-      if (
-        window.location.hostname !== "localhost" &&
-        window.location.hostname !== "127.0.0.1"
-      ) {
-        document.addEventListener("contextmenu", (e) => e.preventDefault());
-      }
-
       // Warn users attempting to access dev tools
       const devtools = { open: false, orientation: null };
       const threshold = 160;

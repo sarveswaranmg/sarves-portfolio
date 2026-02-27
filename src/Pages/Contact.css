@@ -39,7 +39,9 @@
 
 .contact-title {
   font-size: clamp(1.8rem, 4vw, 3.5rem);
-  font-weight: 800;
+  font-weight: 600;
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
   color: white;
   margin-bottom: 15px;
 }

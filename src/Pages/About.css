@@ -13,7 +13,9 @@
 
 .about-title {
   font-size: clamp(32px, 5vw, 72px);
-  font-weight: bold;
+  font-weight: 600;
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
   margin: 0;
   flex-shrink: 0;
 }
