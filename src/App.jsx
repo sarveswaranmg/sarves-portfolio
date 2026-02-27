@@ -42,11 +42,6 @@ const LoadingFallback = () => (
       </h1>
 
       <style>{`
-        @font-face {
-          font-family: sign;
-          src: url("../assets/font/Mitchel-GO76G.otf") format("opentype");
-        }
-        
         @keyframes fadeInOut {
           0%, 100% { opacity: 0.6; }
           50% { opacity: 1; }
@@ -137,9 +132,8 @@ function App() {
                   </p>
                 </div>
                 <motion.a
-                  href="/resume.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="/Sarveswaran-MG-Software-Developer.pdf"
+                  download
                   className="modal-resume-button"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
