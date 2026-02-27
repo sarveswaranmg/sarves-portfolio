@@ -1,5 +1,5 @@
 /* Google Fonts Import */
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700;800&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700;800&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap");
 
 /* Geist Sans - Variable Font (weight 100-900) */
 @font-face {
@@ -72,8 +72,10 @@
 
 /* CSS Custom Properties for easy usage */
 :root {
-  --font-display: "Sora", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-display:
+    "Sora", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-body:
+    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-accent: "Space Mono", monospace;
   --font-geist-sans:
     "Geist Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,

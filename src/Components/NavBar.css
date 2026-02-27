@@ -37,7 +37,12 @@
 }
 
 .left-name {
-  font-family: "sign", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family:
+    "sign",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
   font-size: 28px;
   color: white;
   font-weight: 600;
