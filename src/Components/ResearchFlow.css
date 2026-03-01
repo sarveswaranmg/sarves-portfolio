@@ -32,7 +32,7 @@
   width: 100%;
   height: 600px;
   background: #0a0a0a;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(210, 183, 145, 0.1);
   border-radius: 16px;
   margin: 0 auto;
   max-width: min(1400px, 95%);
@@ -45,7 +45,7 @@
   padding: 16px 20px;
   border-radius: 12px;
   background: #000;
-  border: 2px solid rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(210, 183, 145, 0.2);
   min-width: 160px;
   text-align: center;
   cursor: pointer;
@@ -86,7 +86,7 @@
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(210, 183, 145, 0.2);
   z-index: 1000;
   max-width: 220px;
   white-space: normal;
@@ -100,85 +100,85 @@
 
 /* Phase Type Colors */
 .custom-node.research {
-  border-color: rgba(74, 158, 255, 0.6);
+  border-color: rgba(210, 183, 145, 0.6);
   background: linear-gradient(
     135deg,
-    rgba(74, 158, 255, 0.05) 0%,
+    rgba(210, 183, 145, 0.05) 0%,
     rgba(0, 0, 0, 0.9) 100%
   );
 }
 
 .custom-node.research:hover {
-  border-color: rgba(74, 158, 255, 1);
-  box-shadow: 0 8px 24px rgba(74, 158, 255, 0.3);
+  border-color: rgba(210, 183, 145, 1);
+  box-shadow: 0 8px 24px rgba(210, 183, 145, 0.3);
 }
 
 .custom-node.development {
-  border-color: rgba(34, 197, 94, 0.6);
+  border-color: rgba(210, 183, 145, 0.4);
   background: linear-gradient(
     135deg,
-    rgba(34, 197, 94, 0.05) 0%,
+    rgba(210, 183, 145, 0.03) 0%,
     rgba(0, 0, 0, 0.9) 100%
   );
 }
 
 .custom-node.development:hover {
-  border-color: rgba(34, 197, 94, 1);
-  box-shadow: 0 8px 24px rgba(34, 197, 94, 0.3);
+  border-color: rgba(210, 183, 145, 0.8);
+  box-shadow: 0 8px 24px rgba(210, 183, 145, 0.15);
 }
 
 .custom-node.evaluation {
-  border-color: rgba(245, 158, 11, 0.6);
+  border-color: rgba(210, 183, 145, 0.4);
   background: linear-gradient(
     135deg,
-    rgba(245, 158, 11, 0.05) 0%,
+    rgba(210, 183, 145, 0.03) 0%,
     rgba(0, 0, 0, 0.9) 100%
   );
 }
 
 .custom-node.evaluation:hover {
-  border-color: rgba(245, 158, 11, 1);
-  box-shadow: 0 8px 24px rgba(245, 158, 11, 0.3);
+  border-color: rgba(210, 183, 145, 0.8);
+  box-shadow: 0 8px 24px rgba(210, 183, 145, 0.2);
 }
 
 .custom-node.publication {
-  border-color: rgba(239, 68, 68, 0.8);
+  border-color: rgba(210, 183, 145, 0.8);
   background: linear-gradient(
     135deg,
-    rgba(239, 68, 68, 0.1) 0%,
+    rgba(210, 183, 145, 0.08) 0%,
     rgba(0, 0, 0, 0.9) 100%
   );
-  animation: pulse 2s ease-in-out infinite;
+  animation: pulseGold 2s ease-in-out infinite;
 }
 
 .custom-node.publication:hover {
-  border-color: rgba(239, 68, 68, 1);
-  box-shadow: 0 8px 32px rgba(239, 68, 68, 0.4);
+  border-color: #d2b791;
+  box-shadow: 0 8px 32px rgba(210, 183, 145, 0.4);
   animation: none;
 }
 
-@keyframes pulse {
+@keyframes pulseGold {
   0%,
   100% {
-    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+    box-shadow: 0 4px 12px rgba(210, 183, 145, 0.2);
   }
   50% {
-    box-shadow: 0 8px 24px rgba(239, 68, 68, 0.4);
+    box-shadow: 0 8px 24px rgba(210, 183, 145, 0.4);
   }
 }
 
 .custom-node.support {
-  border-color: rgba(139, 92, 246, 0.6);
+  border-color: rgba(210, 183, 145, 0.25);
   background: linear-gradient(
     135deg,
-    rgba(139, 92, 246, 0.05) 0%,
+    rgba(210, 183, 145, 0.02) 0%,
     rgba(0, 0, 0, 0.9) 100%
   );
 }
 
 .custom-node.support:hover {
-  border-color: rgba(139, 92, 246, 1);
-  box-shadow: 0 8px 24px rgba(139, 92, 246, 0.3);
+  border-color: rgba(210, 183, 145, 0.6);
+  box-shadow: 0 8px 24px rgba(210, 183, 145, 0.1);
 }
 
 /* React Flow Overrides */
@@ -213,13 +213,13 @@
 /* Controls */
 .flow-controls {
   background: rgba(0, 0, 0, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(210, 183, 145, 0.2);
   border-radius: 8px;
 }
 
 .flow-controls button {
   background: transparent;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(210, 183, 145, 0.1);
   color: white;
 }
 
@@ -234,7 +234,7 @@
 /* MiniMap */
 .flow-minimap {
   background: rgba(0, 0, 0, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(210, 183, 145, 0.2);
   border-radius: 8px;
 }
 
@@ -264,28 +264,28 @@
 }
 
 .legend-color.research {
-  background: rgba(74, 158, 255, 0.6);
-  border: 1px solid rgba(74, 158, 255, 1);
+  background: rgba(210, 183, 145, 0.6);
+  border: 1px solid rgba(210, 183, 145, 1);
 }
 
 .legend-color.development {
-  background: rgba(34, 197, 94, 0.6);
-  border: 1px solid rgba(34, 197, 94, 1);
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.8);
 }
 
 .legend-color.evaluation {
-  background: rgba(245, 158, 11, 0.6);
-  border: 1px solid rgba(245, 158, 11, 1);
+  background: rgba(210, 183, 145, 0.35);
+  border: 1px solid rgba(210, 183, 145, 0.7);
 }
 
 .legend-color.publication {
-  background: rgba(239, 68, 68, 0.6);
-  border: 1px solid rgba(239, 68, 68, 1);
+  background: rgba(210, 183, 145, 0.7);
+  border: 1px solid #d2b791;
 }
 
 .legend-color.support {
-  background: rgba(139, 92, 246, 0.6);
-  border: 1px solid rgba(139, 92, 246, 1);
+  background: rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 /* Responsive */

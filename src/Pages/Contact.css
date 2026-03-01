@@ -6,6 +6,7 @@
   justify-content: center;
   padding: 60px 20px;
   position: relative;
+  contain: layout style;
 }
 
 .contact-line {
@@ -19,16 +20,16 @@
 
   background: linear-gradient(
     90deg,
-    rgba(255, 255, 255, 0.1) 0%,
-    rgba(255, 255, 255, 0.6) 20%,
-    white 50%,
-    rgba(255, 255, 255, 0.6) 80%,
-    rgba(255, 255, 255, 0.1) 100%
+    rgba(210, 183, 145, 0.1) 0%,
+    rgba(210, 183, 145, 0.6) 20%,
+    #d2b791 50%,
+    rgba(210, 183, 145, 0.6) 80%,
+    rgba(210, 183, 145, 0.1) 100%
   );
 
   box-shadow:
-    0 0 8px rgba(255, 255, 255, 0.4),
-    0 0 20px rgba(255, 255, 255, 0.2);
+    0 0 8px rgba(210, 183, 145, 0.4),
+    0 0 20px rgba(210, 183, 145, 0.2);
 }
 
 .contact-inner {
@@ -58,6 +59,14 @@
   padding: clamp(20px, 3vw, 40px);
   border-radius: clamp(12px, 2vw, 20px);
   border: 1px solid rgba(255, 255, 255, 0.15);
+  transition:
+    border-color 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.contact-card:hover {
+  border-color: rgba(210, 183, 145, 0.3);
+  box-shadow: 0 8px 32px rgba(210, 183, 145, 0.08);
 }
 
 .contact-card form {
@@ -86,9 +95,9 @@
 
 .contact-card input:focus,
 .contact-card textarea:focus {
-  border-color: white;
+  border-color: #d2b791;
   background: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 20px rgba(210, 183, 145, 0.15);
 }
 
 .contact-card textarea {
@@ -105,12 +114,14 @@
   color: black;
   font-weight: 600;
   cursor: pointer;
-  transition: 0.3s ease;
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
   font-size: clamp(0.85rem, 1vw, 1rem);
 }
 
 .contact-card button:hover {
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 24px rgba(210, 183, 145, 0.4);
+  background: #d2b791;
+  transform: translateY(-2px);
 }
 
 .social-row {
@@ -131,6 +142,13 @@
   justify-content: center;
   backdrop-filter: blur(15px);
   border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.social-row a:hover {
+  border-color: rgba(210, 183, 145, 0.6);
+  box-shadow: 0 0 20px rgba(210, 183, 145, 0.2);
+  background: rgba(210, 183, 145, 0.08);
 }
 
 .social-row img {
@@ -151,8 +169,14 @@
   text-decoration: none;
   font-size: clamp(18px, 2vw, 24px);
   color: white;
-  transition: 0.3s ease;
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
   cursor: pointer;
+}
+
+.resume-btn:hover {
+  border-color: rgba(210, 183, 145, 0.6);
+  box-shadow: 0 0 20px rgba(210, 183, 145, 0.2);
+  background: rgba(210, 183, 145, 0.08);
 }
 
 /* Responsive */

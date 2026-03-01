@@ -2,6 +2,7 @@
   background: #000;
   color: white;
   padding: 6rem clamp(2rem, 5vw, 4rem);
+  contain: layout style;
 }
 
 .about-container {
@@ -47,16 +48,16 @@
 
   background: linear-gradient(
     90deg,
-    rgba(255, 255, 255, 0.1) 0%,
-    rgba(255, 255, 255, 0.6) 20%,
-    white 50%,
-    rgba(255, 255, 255, 0.6) 80%,
-    rgba(255, 255, 255, 0.1) 100%
+    rgba(210, 183, 145, 0.1) 0%,
+    rgba(210, 183, 145, 0.6) 20%,
+    #d2b791 50%,
+    rgba(210, 183, 145, 0.6) 80%,
+    rgba(210, 183, 145, 0.1) 100%
   );
 
   box-shadow:
-    0 0 8px rgba(255, 255, 255, 0.4),
-    0 0 20px rgba(255, 255, 255, 0.2);
+    0 0 8px rgba(210, 183, 145, 0.4),
+    0 0 20px rgba(210, 183, 145, 0.2);
 }
 
 /* Centered content */

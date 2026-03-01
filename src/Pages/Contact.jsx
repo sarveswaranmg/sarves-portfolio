@@ -113,7 +113,8 @@ export default function Contact() {
         className="contact-inner"
         variants={containerVariants}
         initial="hidden"
-        animate="visible"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
       >
         <motion.h1 variants={itemVariants} className="contact-title">
           Let's Work Together

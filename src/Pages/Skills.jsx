@@ -33,24 +33,24 @@ import dsaLogo from "../assets/logos/dsa.png";
 function Skills() {
   const allSkills = useMemo(
     () => [
-      { name: "DSA", icon: dsaLogo, level: 7, color: "#000033" },
-      { name: "React.js", icon: reactLogo, level: 8, color: "#71bfdb" },
-      { name: "JavaScript", icon: jsLogo, level: 8, color: "#f3e051" },
-      { name: "HTML5", icon: htmlLogo, level: 7, color: "#cd5b38" },
-      { name: "CSS3", icon: cssLogo, level: 6, color: "#3a64e9" },
-      { name: "Tailwind CSS", icon: tailwindLogo, level: 6, color: "#60a6b1" },
-      { name: "Node.js", icon: nodeLogo, level: 6, color: "#94cb4a" },
+      { name: "DSA", icon: dsaLogo, level: 7, color: "#d2b791" },
+      { name: "React.js", icon: reactLogo, level: 8, color: "#ffffff" },
+      { name: "JavaScript", icon: jsLogo, level: 8, color: "#d2b791" },
+      { name: "HTML5", icon: htmlLogo, level: 7, color: "#ffffff" },
+      { name: "CSS3", icon: cssLogo, level: 6, color: "#ffffff" },
+      { name: "Tailwind CSS", icon: tailwindLogo, level: 6, color: "#ffffff" },
+      { name: "Node.js", icon: nodeLogo, level: 6, color: "#d2b791" },
       { name: "Express.js", icon: expressLogo, level: 6, color: "#ffffff" },
       { name: "REST APIs", icon: restApiLogo, level: 5, color: "#ffffff" },
-      { name: "MongoDB", icon: mongodbLogo, level: 6, color: "#65a657" },
-      { name: "SQL", icon: sqlLogo, level: 7, color: "#55b9ed" },
-      { name: "PostgreSQL", icon: postgresqlLogo, level: 7, color: "#40668e" },
-      { name: "Java", icon: javaLogo, level: 5, color: "#d8762c" },
-      { name: "Python", icon: pythonLogo, level: 6, color: "#f3cc48" },
-      { name: "NumPy", icon: numpyLogo, level: 5, color: "#5776c9" },
-      { name: "Pandas", icon: pandasLogo, level: 5, color: "#d42e86" },
-      { name: "TensorFlow", icon: tensorflowLogo, level: 5, color: "#e0933f" },
-      { name: "Tableau", icon: tableauLogo, level: 7, color: "#b7333b" },
+      { name: "MongoDB", icon: mongodbLogo, level: 6, color: "#d2b791" },
+      { name: "SQL", icon: sqlLogo, level: 7, color: "#ffffff" },
+      { name: "PostgreSQL", icon: postgresqlLogo, level: 7, color: "#ffffff" },
+      { name: "Java", icon: javaLogo, level: 5, color: "#d2b791" },
+      { name: "Python", icon: pythonLogo, level: 6, color: "#d2b791" },
+      { name: "NumPy", icon: numpyLogo, level: 5, color: "#ffffff" },
+      { name: "Pandas", icon: pandasLogo, level: 5, color: "#ffffff" },
+      { name: "TensorFlow", icon: tensorflowLogo, level: 5, color: "#d2b791" },
+      { name: "Tableau", icon: tableauLogo, level: 7, color: "#ffffff" },
     ],
     [],
   );
@@ -200,7 +200,7 @@ function Skills() {
               boxShadow: selectedSkill
                 ? `0 0 50px ${selectedSkill.color}`
                 : "0 0 20px rgba(255,255,255,0.3)",
-              borderColor: selectedSkill ? selectedSkill.color : "#fff",
+              borderColor: selectedSkill ? selectedSkill.color : "#d2b791",
             }}
             onDragOver={handleDagOver}
             onDrop={handleDrop}

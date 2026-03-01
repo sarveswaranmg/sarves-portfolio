@@ -167,11 +167,11 @@ function NavBar({ onOpenToWorkClick }) {
 
   const nameVariants = {
     rest: {
-      textShadow: "0 0 20px rgba(255, 255, 255, 0)",
+      textShadow: "0 0 20px rgba(210, 183, 145, 0)",
     },
     hover: {
       textShadow:
-        "0 0 30px rgba(255, 255, 255, 0.6), 0 0 60px rgba(255, 255, 255, 0.3)",
+        "0 0 30px rgba(210, 183, 145, 0.6), 0 0 60px rgba(210, 183, 145, 0.3)",
     },
   };
 
@@ -208,13 +208,13 @@ function NavBar({ onOpenToWorkClick }) {
       transition: { duration: 0.4, ease: "easeInOut" },
     },
     active: {
-      color: "white",
+      color: "#d2b791",
       scale: 1.08,
-      textShadow: "0 0 20px rgba(255, 255, 255, 0.6)",
+      textShadow: "0 0 20px rgba(210, 183, 145, 0.6)",
       transition: { duration: 0.4, ease: "easeInOut" },
     },
     hover: {
-      color: "white",
+      color: "#d2b791",
       y: -2,
       scale: 1.1,
       transition: { duration: 0.3, ease: "easeOut" },

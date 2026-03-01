@@ -44,7 +44,7 @@
     "Segoe UI",
     sans-serif;
   font-size: 28px;
-  color: white;
+  color: #d2b791;
   font-weight: 600;
   letter-spacing: -0.01em;
   cursor: pointer;
@@ -69,7 +69,7 @@
 }
 
 .left-name:hover .name-letter {
-  color: white;
+  color: #d2b791;
 }
 
 /* Signature Underline */
@@ -81,11 +81,11 @@
   height: 2px;
   background: linear-gradient(
     90deg,
-    rgba(255, 255, 255, 0.3),
-    white,
-    rgba(255, 255, 255, 0.3)
+    rgba(210, 183, 145, 0.3),
+    #d2b791,
+    rgba(210, 183, 145, 0.3)
   );
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 15px rgba(210, 183, 145, 0.5);
   transform-origin: left center;
   will-change: transform, opacity;
 }
@@ -157,11 +157,11 @@
   height: 2px;
   background: linear-gradient(
     90deg,
-    rgba(255, 255, 255, 0.5),
-    white,
-    rgba(255, 255, 255, 0.5)
+    rgba(210, 183, 145, 0.5),
+    #d2b791,
+    rgba(210, 183, 145, 0.5)
   );
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 10px rgba(210, 183, 145, 0.4);
 }
 
 /* Glass Card */
@@ -272,10 +272,10 @@
 .modal-content {
   background: linear-gradient(
     135deg,
-    rgba(10, 10, 30, 0.9) 0%,
-    rgba(20, 10, 40, 0.9) 100%
+    rgba(10, 10, 10, 0.95) 0%,
+    rgba(15, 15, 15, 0.95) 100%
   );
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(210, 183, 145, 0.15);
   border-radius: 20px;
   padding: 40px;
   max-width: 500px;
@@ -284,7 +284,7 @@
   -webkit-backdrop-filter: blur(20px);
   box-shadow:
     0 20px 60px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    inset 0 1px 0 rgba(210, 183, 145, 0.15);
   position: relative;
   animation: slideIn 0.3s ease-out;
 }
@@ -326,7 +326,7 @@
 
 .modal-header {
   margin-bottom: 30px;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 2px solid rgba(210, 183, 145, 0.1);
   padding-bottom: 20px;
 }
 
@@ -352,7 +352,7 @@
 
 .modal-section h3 {
   font-size: 16px;
-  color: rgba(0, 255, 136, 0.9);
+  color: #d2b791;
   margin: 0;
   font-weight: 600;
   letter-spacing: 0.5px;
@@ -368,14 +368,14 @@
 }
 
 .modal-section a {
-  color: rgba(0, 255, 136, 0.9);
+  color: #d2b791;
   text-decoration: none;
   transition: all 0.3s ease;
   font-weight: 500;
 }
 
 .modal-section a:hover {
-  color: #00ff88;
+  color: #e0c9a6;
   text-decoration: underline;
 }
 
@@ -389,12 +389,12 @@
   padding: 14px 28px;
   background: linear-gradient(
     135deg,
-    rgba(0, 255, 136, 0.15) 0%,
-    rgba(0, 255, 136, 0.05) 100%
+    rgba(210, 183, 145, 0.15) 0%,
+    rgba(210, 183, 145, 0.05) 100%
   );
-  border: 2px solid rgba(0, 255, 136, 0.5);
+  border: 2px solid rgba(210, 183, 145, 0.5);
   border-radius: 12px;
-  color: rgba(0, 255, 136, 0.95);
+  color: #d2b791;
   font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.5px;
@@ -414,21 +414,21 @@
   height: 100%;
   background: linear-gradient(
     135deg,
-    rgba(0, 255, 136, 0.25) 0%,
-    rgba(0, 255, 136, 0.1) 100%
+    rgba(210, 183, 145, 0.25) 0%,
+    rgba(210, 183, 145, 0.1) 100%
   );
   transition: left 0.3s ease;
   z-index: 0;
 }
 
 .modal-resume-button:hover {
-  border-color: rgba(0, 255, 136, 0.8);
-  color: #00ff88;
-  box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+  border-color: rgba(210, 183, 145, 0.8);
+  color: #d2b791;
+  box-shadow: 0 0 20px rgba(210, 183, 145, 0.3);
   background: linear-gradient(
     135deg,
-    rgba(0, 255, 136, 0.2) 0%,
-    rgba(0, 255, 136, 0.08) 100%
+    rgba(210, 183, 145, 0.2) 0%,
+    rgba(210, 183, 145, 0.08) 100%
   );
 }
 
@@ -466,23 +466,23 @@
 
 /* Modal View Resume Button Variant */
 .modal-view-resume-button {
-  border-color: rgba(100, 200, 255, 0.5);
-  color: rgba(100, 200, 255, 0.95);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.95);
   background: linear-gradient(
     135deg,
-    rgba(100, 200, 255, 0.15) 0%,
-    rgba(100, 200, 255, 0.05) 100%
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.03) 100%
   );
 }
 
 .modal-view-resume-button:hover {
-  border-color: rgba(100, 200, 255, 0.8);
-  color: #64c8ff;
-  box-shadow: 0 0 20px rgba(100, 200, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.8);
+  color: #ffffff;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
   background: linear-gradient(
     135deg,
-    rgba(100, 200, 255, 0.2) 0%,
-    rgba(100, 200, 255, 0.08) 100%
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.05) 100%
   );
 }
 
@@ -554,10 +554,10 @@
 }
 
 .mobile-nav-item.active {
-  color: white;
-  background: rgba(255, 255, 255, 0.1);
+  color: #d2b791;
+  background: rgba(210, 183, 145, 0.1);
   font-weight: 600;
-  text-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+  text-shadow: 0 0 20px rgba(210, 183, 145, 0.6);
 }
 
 .mobile-nav-item:focus-visible {

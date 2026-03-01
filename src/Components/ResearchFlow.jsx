@@ -343,15 +343,15 @@ const ResearchFlow = ({ onPaperClick }) => {
             nodeColor={(node) => {
               switch (node.data.type) {
                 case "research":
-                  return "#4a9eff";
+                  return "#d2b791";
                 case "development":
-                  return "#22c55e";
+                  return "#ffffff";
                 case "evaluation":
-                  return "#f59e0b";
+                  return "#b8a07a";
                 case "publication":
-                  return "#ef4444";
+                  return "#d2b791";
                 case "support":
-                  return "#8b5cf6";
+                  return "#888888";
                 default:
                   return "#666";
               }

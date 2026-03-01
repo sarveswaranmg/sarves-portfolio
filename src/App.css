@@ -2,12 +2,41 @@
   margin: 0;
   font-family: var(--font-body);
 }
+
+:root {
+  --accent: #d2b791;
+  --accent-rgb: 210, 183, 145;
+  --bg: #000000;
+  --fg: #ffffff;
+  --fg-muted: #b0b0b0;
+}
+
 body {
   margin: 0;
-  background-color: #000000;
+  background-color: var(--bg);
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+}
+
+/* Smooth scroll only when user hasn't requested reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  body {
+    scroll-behavior: auto;
+  }
+}
+
+/* Global selection accent */
+::selection {
+  background: rgba(210, 183, 145, 0.3);
+  color: #ffffff;
+}
+
+::-moz-selection {
+  background: rgba(210, 183, 145, 0.3);
+  color: #ffffff;
 }
 
 /* Professional headings with Sora */

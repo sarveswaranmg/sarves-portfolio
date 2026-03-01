@@ -93,7 +93,7 @@ function Home() {
       rest: { textShadow: "0 0 20px rgba(255, 255, 255, 0.15)" },
       hover: prefersReducedMotion
         ? { textShadow: "0 0 20px rgba(255, 255, 255, 0.15)" }
-        : { textShadow: "0 0 30px rgba(255, 255, 255, 0.4)" },
+        : { textShadow: "0 0 30px rgba(210, 183, 145, 0.5)" },
     }),
     [prefersReducedMotion],
   );
@@ -161,7 +161,7 @@ function Home() {
           whileHover={
             prefersReducedMotion
               ? {}
-              : { textShadow: "0 0 20px rgba(255, 255, 255, 0.4)" }
+              : { textShadow: "0 0 20px rgba(210, 183, 145, 0.4)" }
           }
         >
           <ReactTyped

@@ -76,7 +76,7 @@ const Education = () => {
 
         // Direct DOM manipulation instead of setState to avoid React re-renders
         if (cardRef.current) {
-          cardRef.current.style.boxShadow = `${roundedX}px ${roundedY}px 20px 8px rgba(255, 255, 255, 0.12)`;
+          cardRef.current.style.boxShadow = `${roundedX}px ${roundedY}px 50px 20px rgba(210, 183, 145, 0.18)`;
         }
       }
 
@@ -138,7 +138,7 @@ const Education = () => {
       <div className="education-bg">
         <LightRays
           raysOrigin="top-center"
-          raysColor="#ffffff"
+          raysColor="#d2b791"
           raysSpeed={isMobile ? 0.08 : 0.1}
           lightSpread={isMobile ? 0.15 : 0.4}
           rayLength={isMobile ? 2.2 : 3.1}

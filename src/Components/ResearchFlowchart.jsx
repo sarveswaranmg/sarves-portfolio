@@ -27,7 +27,7 @@ const ResearchFlowchart = ({ flowNodes, flowEdges, isPreview = false }) => {
         let nodeStyle = {
           background: "#000",
           color: "#fff",
-          border: "1px solid rgba(255, 255, 255, 0.3)",
+          border: "1px solid rgba(210, 183, 145, 0.3)",
           borderRadius: "8px",
           padding: isPreview ? "8px 12px" : "12px 16px",
           fontSize: isPreview ? "9px" : "12px",
@@ -44,25 +44,25 @@ const ResearchFlowchart = ({ flowNodes, flowEdges, isPreview = false }) => {
         if (nodeType === "start") {
           nodeStyle.background =
             "linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%)";
-          nodeStyle.border = "2px solid rgba(100, 200, 255, 0.6)";
+          nodeStyle.border = "2px solid rgba(210, 183, 145, 0.6)";
           nodeStyle.fontWeight = "700";
         } else if (nodeType === "end") {
           nodeStyle.background =
             "linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%)";
-          nodeStyle.border = "2px solid rgba(100, 255, 150, 0.6)";
+          nodeStyle.border = "2px solid rgba(210, 183, 145, 0.6)";
           nodeStyle.fontWeight = "700";
         } else if (nodeType === "split" || nodeType === "merge") {
           nodeStyle.background =
-            "linear-gradient(135deg, #2a1a1a 0%, #3a2a2a 100%)";
-          nodeStyle.border = "2px solid rgba(255, 200, 100, 0.5)";
+            "linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%)";
+          nodeStyle.border = "2px solid rgba(210, 183, 145, 0.3)";
         } else if (
           nodeType === "parallel" ||
           nodeType === "branch-left" ||
           nodeType === "branch-right"
         ) {
           nodeStyle.background =
-            "linear-gradient(135deg, #1a1a2a 0%, #2a2a3a 100%)";
-          nodeStyle.border = "1.5px solid rgba(200, 150, 255, 0.5)";
+            "linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%)";
+          nodeStyle.border = "1.5px solid rgba(210, 183, 145, 0.25)";
         }
 
         generatedNodes.push({
@@ -120,7 +120,7 @@ const ResearchFlowchart = ({ flowNodes, flowEdges, isPreview = false }) => {
           style: {
             background: "#000",
             color: "#fff",
-            border: "1px solid rgba(255, 255, 255, 0.3)",
+            border: "1px solid rgba(210, 183, 145, 0.3)",
             borderRadius: "8px",
             padding: isPreview ? "8px 12px" : "12px 16px",
             fontSize: isPreview ? "10px" : "12px",
