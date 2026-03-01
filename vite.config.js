@@ -48,6 +48,9 @@ export default defineConfig({
     include: ["react", "react-dom"],
   },
 
+  // Ensure font files are handled as assets
+  assetsInclude: ["**/*.otf", "**/*.ttf", "**/*.woff", "**/*.woff2"],
+
   preview: {
     headers: {
       "X-Content-Type-Options": "nosniff",

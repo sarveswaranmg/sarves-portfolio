@@ -64,10 +64,12 @@
 /* Sign Font - Special display font for Sarves */
 @font-face {
   font-family: "sign";
-  src: url("./assets/font/Mitchel-GO76G.otf") format("opentype");
-  font-weight: 400;
+  src:
+    url("./assets/font/Mitchel-GO76G.otf") format("opentype"),
+    url("./assets/font/AutografPersonalUseOnly-mOBm.ttf") format("truetype");
+  font-weight: 100 900;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 /* CSS Custom Properties for easy usage */
