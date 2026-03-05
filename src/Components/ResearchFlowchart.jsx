@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useMemo } from "react";
 import ReactFlow, { Background, Controls, MarkerType } from "reactflow";
 import "reactflow/dist/style.css";

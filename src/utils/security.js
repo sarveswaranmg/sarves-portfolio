@@ -25,7 +25,7 @@ export const initializeSecurity = () => {
     console.log = function () {
       _logs.push([...arguments]);
       // Only show in production if not dev tools
-      if (import.meta.env.PROD) {
+      if (process.env.NODE_ENV === "production") {
         // Silent in production
       }
     };
@@ -74,15 +74,8 @@ export const initializeSecurity = () => {
 
   // Prevent runtime code analysis
   const _protectFunctions = () => {
-    // Convert function.toString() to return obfuscated text
-    const originalToString = Function.prototype.toString;
-
-    Function.prototype.toString = function () {
-      if (this === _protectFunctions) {
-        return "function _() {[obfuscated]}";
-      }
-      return originalToString.call(this);
-    };
+    // NOTE: Removed Function.prototype.toString override as it breaks webpack's module loading system
+    // Keep only safe obfuscation methods
   };
 
   // Initialize all security measures

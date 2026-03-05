@@ -1,3 +1,5 @@
+"use client";
+
 import React, {
   useState,
   useEffect,
@@ -43,24 +45,14 @@ function NavBar({ onOpenToWorkClick }) {
     [],
   );
 
-  // Initialize activeSection with the current section in view
-  const [activeSection, setActiveSection] = useState(() => {
-    if (typeof window === "undefined") return "Home";
-
-    const scrollPosition = window.scrollY + 100;
-    for (let i = sections.length - 1; i >= 0; i--) {
-      const element = document.getElementById(sections[i].toLowerCase());
-      if (element && scrollPosition >= element.offsetTop) {
-        return sections[i];
-      }
-    }
-    return "Home";
-  });
-
+  // Initialize with Home to match server render
+  const [activeSection, setActiveSection] = useState("Home");
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const navRef = useRef(null);
 
+  // Detect active section on mount and scroll
   useEffect(() => {
     let ticking = false;
 
@@ -95,6 +87,12 @@ function NavBar({ onOpenToWorkClick }) {
         ticking = true;
       }
     };
+
+    // Set mounted flag on initial mount (after hydration)
+    setMounted(true);
+
+    // Detect initial section
+    handleScroll();
 
     // Add scroll listener
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -299,10 +297,12 @@ function NavBar({ onOpenToWorkClick }) {
             animate={activeSection === section ? "active" : "rest"}
             whileHover="hover"
             aria-label={`Navigate to ${section}`}
-            aria-current={activeSection === section ? "page" : undefined}
+            aria-current={
+              mounted && activeSection === section ? "page" : undefined
+            }
           >
             <span>{section}</span>
-            {activeSection === section && (
+            {mounted && activeSection === section && (
               <motion.div
                 className="underline"
                 layoutId="underline"

@@ -4,14 +4,7 @@ const CACHE_ASSETS = `${CACHE_VERSION}-assets`;
 const CACHE_RUNTIME = `${CACHE_VERSION}-runtime`;
 
 // Assets to pre-cache on install
-const STATIC_ASSETS = [
-  "/",
-  "/index.html",
-  "/src/main.jsx",
-  "/src/App.css",
-  "/src/index.css",
-  "/public/favi.png",
-];
+const STATIC_ASSETS = ["/", "/favi.png"];
 
 // Install event - pre-cache critical assets
 self.addEventListener("install", (event) => {
