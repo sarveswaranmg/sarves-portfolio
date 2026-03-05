@@ -19,10 +19,17 @@ const nextConfig = {
     formats: ["image/avif", "image/webp"],
     // Cache images for 1 year (immutable)
     minimumCacheTTL: 31536000,
+    // Enable responsive image optimization
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
   // Optimize bundle
   compress: true,
-  // Headers for caching static assets
+  // Enable experimental optimizations for faster builds
+  experimental: {
+    optimizePackageImports: ["framer-motion", "gsap", "react-typed"],
+  },
+  // Headers for caching static assets and compression
   async headers() {
     return [
       {
@@ -32,6 +39,10 @@ const nextConfig = {
             key: "Cache-Control",
             value: "public, max-age=31536000, immutable",
           },
+          {
+            key: "X-Content-Type-Options",
+            value: "nosniff",
+          },
         ],
       },
       {
@@ -40,6 +51,15 @@ const nextConfig = {
           {
             key: "Cache-Control",
             value: "public, max-age=0, s-maxage=3600, must-revalidate",
+          },
+        ],
+      },
+      {
+        source: "/fonts/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
           },
         ],
       },

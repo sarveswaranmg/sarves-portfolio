@@ -155,6 +155,11 @@ export default async function RootLayout({ children }) {
     >
       <head>
         <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
+        {/* Resource hints for better performance */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+        {/* DNS prefetch for better resource discovery */}
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

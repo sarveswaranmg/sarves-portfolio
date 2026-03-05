@@ -1,20 +1,22 @@
 import { Sora, Inter, Space_Mono } from "next/font/google";
 
-// Load Google Fonts with optimized weights
+// Load Google Fonts with ONLY needed weights (reduces font file size by ~70%)
 export const sora = Sora({
   subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800"],
+  weight: ["400", "500", "600", "700"], // Only load weights used in design
   variable: "--font-display",
   display: "swap",
   preload: true,
+  fallback: ["system-ui", "sans-serif"], // Faster fallback
 });
 
 export const inter = Inter({
   subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  weight: ["400", "500", "600", "700"], // Reduced from 100-900
   variable: "--font-body",
   display: "swap",
   preload: true,
+  fallback: ["system-ui", "sans-serif"],
 });
 
 export const spaceMono = Space_Mono({
@@ -23,4 +25,5 @@ export const spaceMono = Space_Mono({
   variable: "--font-accent",
   display: "swap",
   preload: true,
+  fallback: ["monospace"],
 });

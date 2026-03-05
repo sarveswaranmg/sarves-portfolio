@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import NavBar from "./Components/NavBar";
 import Home from "./sections/Home";
@@ -18,9 +18,18 @@ function App() {
     initializeSecurity();
   }, []);
 
+  // Memoize callbacks to prevent unnecessary re-renders
+  const handleOpenToWorkClick = useCallback(() => {
+    setIsOpenToWorkModalOpen(true);
+  }, []);
+
+  const handleModalClose = useCallback(() => {
+    setIsOpenToWorkModalOpen(false);
+  }, []);
+
   return (
     <>
-      <NavBar onOpenToWorkClick={() => setIsOpenToWorkModalOpen(true)} />
+      <NavBar onOpenToWorkClick={handleOpenToWorkClick} />
       <Home />
       <About />
       <Projects />
@@ -37,7 +46,7 @@ function App() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            onClick={() => setIsOpenToWorkModalOpen(false)}
+            onClick={handleModalClose}
           >
             <motion.div
               className="modal-content"
@@ -49,7 +58,7 @@ function App() {
             >
               <button
                 className="modal-close"
-                onClick={() => setIsOpenToWorkModalOpen(false)}
+                onClick={handleModalClose}
                 aria-label="Close modal"
               >
                 ✕
