@@ -33,8 +33,9 @@
   );
 
   box-shadow:
-    0 0 8px rgba(210, 183, 145, 0.4),
-    0 0 20px rgba(210, 183, 145, 0.2);
+    0 1px 3px rgba(210, 183, 145, 0.2),
+    0 2px 8px rgba(210, 183, 145, 0.15),
+    0 4px 16px rgba(210, 183, 145, 0.1);
 }
 
 .education-bg {
@@ -89,14 +90,9 @@
   border: 1px solid rgba(210, 183, 145, 0.06);
   contain: layout style;
   box-shadow:
-    0.6px 0.4px 2px hsl(var(--shadow-color) / 0.25),
-    3.5px 2px 8px -0.4px hsl(var(--shadow-color) / 0.25),
-    6.5px 3.8px 14px -0.7px hsl(var(--shadow-color) / 0.22),
-    10.7px 6.3px 22px -1.1px hsl(var(--shadow-color) / 0.22),
-    17.1px 10px 34px -1.4px hsl(var(--shadow-color) / 0.2),
-    26.7px 15.7px 50px -1.8px hsl(var(--shadow-color) / 0.18),
-    40.7px 23.8px 70px -2.1px hsl(var(--shadow-color) / 0.16),
-    59.9px 35px 100px -2.5px hsl(var(--shadow-color) / 0.14);
+    0 2px 4px rgba(0, 0, 0, 0.2),
+    0 6px 12px rgba(0, 0, 0, 0.12),
+    0 12px 24px rgba(0, 0, 0, 0.08);
 }
 
 .education-card:hover {
@@ -168,8 +164,9 @@
     max-width: 90%;
     width: 90%;
     box-shadow:
-      0 0 6px rgba(255, 255, 255, 0.06),
-      0 0 12px rgba(255, 255, 255, 0.03);
+      0 2px 4px rgba(0, 0, 0, 0.2),
+      0 6px 12px rgba(0, 0, 0, 0.12),
+      0 12px 24px rgba(0, 0, 0, 0.08);
   }
 
   .education-card:hover {
@@ -219,8 +216,9 @@
     max-width: 88%;
     width: 88%;
     box-shadow:
-      0 0 4px rgba(255, 255, 255, 0.05),
-      0 0 8px rgba(255, 255, 255, 0.02);
+      0 2px 4px rgba(0, 0, 0, 0.2),
+      0 6px 12px rgba(0, 0, 0, 0.12),
+      0 12px 24px rgba(0, 0, 0, 0.08);
   }
 
   .education-year {

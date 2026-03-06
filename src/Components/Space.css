@@ -5,6 +5,7 @@
   overflow: hidden;
   perspective: 1200px;
   z-index: 0;
+  will-change: contents;
 }
 
 /* Shared particle base */
@@ -14,6 +15,8 @@
   opacity: 0;
   will-change: transform, opacity;
   animation: flySlow linear infinite;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 /* Logos */

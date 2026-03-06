@@ -13,7 +13,6 @@ import { initializeSecurity } from "./utils/security.js";
 
 function App() {
   const [isOpenToWorkModalOpen, setIsOpenToWorkModalOpen] = useState(false);
-
   useEffect(() => {
     initializeSecurity();
   }, []);

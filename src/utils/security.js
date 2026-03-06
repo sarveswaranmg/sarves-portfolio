@@ -9,34 +9,12 @@ export const initializeSecurity = () => {
   // Initialize code integrity hashing
   const codeIntegrityCheck = () => {
     // Simple integrity check - can be expanded
-    const _scriptElements = document.querySelectorAll("script[src*='assets']");
-    // Log tamper detection (optional)
-  };
-
-  // Obfuscate console access - make function names unreadable
-  const _consoleProxy = () => {
-    // Store references for integrity
-    const _originalLog = console.log;
-    const _originalError = console.error;
-    const _originalWarn = console.warn;
-
-    // Create obfuscated logging that's hard to trace
-    let _logs = [];
-    console.log = function () {
-      _logs.push([...arguments]);
-      // Only show in production if not dev tools
-      if (process.env.NODE_ENV === "production") {
-        // Silent in production
-      }
-    };
-
-    console.error = function () {
-      _logs.push([...arguments]);
-    };
-
-    console.warn = function () {
-      _logs.push([...arguments]);
-    };
+    if (typeof document !== "undefined") {
+      const _scriptElements = document.querySelectorAll(
+        "script[src*='assets']",
+      );
+      // Log tamper detection (optional)
+    }
   };
 
   // Detect tampering through code inspection
@@ -80,7 +58,6 @@ export const initializeSecurity = () => {
 
   // Initialize all security measures
   try {
-    _consoleProxy();
     _randomizeGlobals();
     _protectFunctions();
     codeIntegrityCheck();

@@ -14,7 +14,7 @@ export const inter = Inter({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"], // Reduced from 100-900
   variable: "--font-body",
-  display: "swap",
+  display: "optional", // Non-critical font - allows faster initial render
   preload: true,
   fallback: ["system-ui", "sans-serif"],
 });
