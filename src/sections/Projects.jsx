@@ -780,6 +780,10 @@ function Projects() {
                   src={project.url}
                   title={project.title}
                   loading="lazy"
+                  onError={(e) => {
+                    // Silently handle iframe loading errors (external content may have issues)
+                    console.debug(`[External iframe error] ${project.title}`);
+                  }}
                   style={{
                     width: "100%",
                     height: "100%",
