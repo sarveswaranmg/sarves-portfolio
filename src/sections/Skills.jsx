@@ -217,7 +217,14 @@ function Skills() {
               </div>
             ) : (
               <div className="logo-circle-drop">
-                <img src={selectedSkill.icon} alt={selectedSkill.name} />
+                <img
+                  src={selectedSkill.icon}
+                  alt={selectedSkill.name}
+                  width={80}
+                  height={80}
+                  loading="eager"
+                  decoding="async"
+                />
               </div>
             )}
           </div>
@@ -248,6 +255,8 @@ function Skills() {
                 <img
                   src={skill.icon}
                   alt={skill.name}
+                  width={60}
+                  height={60}
                   loading="lazy"
                   decoding="async"
                 />

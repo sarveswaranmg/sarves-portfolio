@@ -20,23 +20,52 @@
     # Prevent referrer leaking
     Referrer-Policy = "strict-origin-when-cross-origin"
     
-    # Content Security Policy - prevent inline scripts
-    Content-Security-Policy = "default-src 'self' https:; script-src 'self' https: 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' https:; connect-src 'self' https:; frame-ancestors 'none';"
+    # Strict Transport Security (HSTS) - enforce HTTPS
+    Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+    
+    # Cross-Origin-Opener-Policy for enhanced security
+    Cross-Origin-Opener-Policy = "same-origin"
+    
+    # Cross-Origin-Resource-Policy
+    Cross-Origin-Resource-Policy = "same-origin"
+    
+    # Cross-Origin-Embedder-Policy
+    Cross-Origin-Embedder-Policy = "require-corp"
+    
+    # Content Security Policy - prevent inline scripts (stronger policy)
+    Content-Security-Policy = "default-src 'self'; script-src 'self' https: 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' https:; connect-src 'self' https:; frame-ancestors 'none'; base-uri 'self'; form-action 'self';"
     
     # Permissions Policy - disable dangerous features
-    Permissions-Policy = "geolocation=(), microphone=(), camera=(), payment=()"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()"
 
-# Cache busting for asset files
+# Cache busting for asset files - aggressive caching for immutable assets
 [[headers]]
   for = "/_next/static/*"
   [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+    Cache-Control = "public, max-age=31536000, immutable, s-maxage=31536000"
 
-# HTML files should not be cached
+# Static images and assets
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable, s-maxage=31536000"
+
+# Service worker and manifest - revalidate frequently
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "public, max-age=3600, s-maxage=3600"
+
+[[headers]]
+  for = "/manifest.json"
+  [headers.values]
+    Cache-Control = "public, max-age=86400, s-maxage=86400"
+
+# HTML files should not be cached - revalidate on every request
 [[headers]]
   for = "/*.html"
   [headers.values]
-    Cache-Control = "public, max-age=0, must-revalidate"
+    Cache-Control = "public, max-age=0, must-revalidate, s-maxage=0"
 
 # Disable source map exposure
 [[headers]]
@@ -44,3 +73,9 @@
   [headers.values]
     X-Content-Type-Options = "nosniff"
     Cache-Control = "no-cache, no-store, must-revalidate"
+
+# Default caching for other assets
+[[headers]]
+  for = "/public/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800, s-maxage=604800"

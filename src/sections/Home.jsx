@@ -127,6 +127,8 @@ function Home() {
             className="home-image"
             src={profileImgPNG}
             alt="profile"
+            width={400}
+            height={400}
             loading="eager"
             decoding="async"
             style={{
@@ -139,7 +141,7 @@ function Home() {
       </motion.div>
 
       <motion.div className="home-text" variants={textVariants}>
-        <motion.p
+        <motion.h1
           className="name"
           variants={glowVariants}
           initial="rest"
@@ -156,7 +158,7 @@ function Home() {
               {char}
             </motion.span>
           ))}
-        </motion.p>
+        </motion.h1>
         <motion.div
           className="role"
           variants={textVariants}

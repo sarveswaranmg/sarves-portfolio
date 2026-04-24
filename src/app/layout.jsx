@@ -169,7 +169,30 @@ export default async function RootLayout({ children }) {
         />
       </head>
       <body>
-        <div id="root">{children}</div>
+        <div id="root">
+          {/* Skip Links for SEO and Accessibility */}
+          <nav aria-label="Skip links" className="skip-links">
+            <a href="#home" className="skip-link">
+              Skip to Home
+            </a>
+            <a href="#about" className="skip-link">
+              Skip to About
+            </a>
+            <a href="#projects" className="skip-link">
+              Skip to Projects
+            </a>
+            <a href="#skills" className="skip-link">
+              Skip to Skills
+            </a>
+            <a href="#education" className="skip-link">
+              Skip to Education
+            </a>
+            <a href="#contact" className="skip-link">
+              Skip to Contact
+            </a>
+          </nav>
+          {children}
+        </div>
 
         {/* SEO fallback for crawlers that don't run JavaScript */}
         <noscript>

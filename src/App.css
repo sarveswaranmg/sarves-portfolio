@@ -57,3 +57,48 @@ kbd,
 samp {
   font-family: var(--font-accent);
 }
+
+/* Animation Performance Optimizations */
+/* Use transform and opacity for animations - these are GPU accelerated */
+
+/* Ensure Framer Motion animations perform well */
+[class*="framer"],
+[data-animation],
+[data-motion] {
+  will-change: auto;
+}
+
+/* Animated elements should use GPU acceleration */
+.home-image,
+.name-letter,
+.name-underline,
+.modal-overlay,
+.modal-content,
+.nav-item,
+.skill-card,
+.project-card,
+.research-card {
+  will-change: auto;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Optimize background animations */
+.contact-wrapper,
+.home-container,
+.about-section {
+  position: relative;
+  contain: layout style;
+}

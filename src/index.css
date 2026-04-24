@@ -1,0 +1,33 @@
+/* Skip Links - Hidden but crawlable for SEO and keyboard navigation */
+.skip-links {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  z-index: -1;
+  opacity: 0;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+/* Show skip links on focus for accessibility */
+.skip-link:focus {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: auto;
+  height: auto;
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 9999;
+  padding: 10px 20px;
+  background: #000;
+  color: #d2b791;
+  text-decoration: none;
+  border: 2px solid #d2b791;
+}

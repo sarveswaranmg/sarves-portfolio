@@ -115,7 +115,7 @@ const Education = () => {
           glowRadius={40}
           glowIntensity={1.2}
           coneSpread={30}
-          colors={['#d2b791', '#d2b791', '#d2b791']}
+          colors={["#d2b791", "#d2b791", "#d2b791"]}
           fillOpacity={0.3}
         >
           <span className="education-year">2020 – 2025</span>

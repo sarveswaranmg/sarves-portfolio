@@ -81,10 +81,23 @@ export default function Contact() {
       {
         logo: linkedinLogo,
         url: "https://www.linkedin.com/in/sarveswaran-mg-b9699521b/",
+        label: "LinkedIn",
       },
-      { logo: githubLogo, url: "https://github.com/sarveswaranmg" },
-      { logo: leetcodeLogo, url: "https://leetcode.com/u/SarveswaranMG/" },
-      { logo: gmailLogo, url: "mailto:mfgsarvesh15@gmail.com" },
+      {
+        logo: githubLogo,
+        url: "https://github.com/sarveswaranmg",
+        label: "GitHub",
+      },
+      {
+        logo: leetcodeLogo,
+        url: "https://leetcode.com/u/SarveswaranMG/",
+        label: "LeetCode",
+      },
+      {
+        logo: gmailLogo,
+        url: "mailto:mfgsarvesh15@gmail.com",
+        label: "Email",
+      },
     ],
     [],
   );
@@ -129,17 +142,42 @@ export default function Contact() {
 
         <motion.div variants={itemVariants} className="contact-card">
           <form ref={form} onSubmit={sendEmail}>
-            <input type="text" name="name" placeholder="Your Name" required />
+            <label htmlFor="name" className="sr-only">
+              Your Name
+            </label>
             <input
+              id="name"
+              type="text"
+              name="name"
+              placeholder="Your Name"
+              aria-label="Your Name"
+              required
+            />
+            <label htmlFor="email" className="sr-only">
+              Your Email
+            </label>
+            <input
+              id="email"
               type="email"
               name="email"
               placeholder="Your Email"
+              aria-label="Your Email"
               required
             />
-            <textarea name="message" placeholder="Your Message" required />
+            <label htmlFor="message" className="sr-only">
+              Your Message
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              placeholder="Your Message"
+              aria-label="Your Message"
+              required
+            />
 
             <motion.button
               type="submit"
+              aria-label={isFormSubmitted ? "Message Sent" : "Send Message"}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -156,10 +194,19 @@ export default function Contact() {
               href={link.url}
               target="_blank"
               rel="noreferrer"
+              aria-label={link.label}
+              title={link.label}
               whileHover={{ y: -8, scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
-              <img src={link.logo} alt="social" />
+              <img
+                src={link.logo}
+                alt={link.label}
+                width={32}
+                height={32}
+                loading="lazy"
+                decoding="async"
+              />
             </motion.a>
           ))}
 

@@ -88,6 +88,8 @@ function App() {
                   href="/Sarveswaran-MG-Software-Developer.pdf"
                   download
                   className="modal-resume-button"
+                  aria-label="Download Resume as PDF"
+                  title="Download Resume"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -99,6 +101,8 @@ function App() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="modal-resume-button modal-view-resume-button"
+                  aria-label="View resume on FlowCV"
+                  title="View resume on FlowCV"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
